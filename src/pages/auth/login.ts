@@ -14,7 +14,7 @@ export class AuthPage {
 
   constructor(
   	public navCtrl: NavController, 
-  	private auth: AuthServiceProvider, 
+    private auth: AuthServiceProvider, 
   	private alertCtrl: AlertController,
 	  private loadingCtrl: LoadingController,
   	public navParams: NavParams) {
@@ -22,11 +22,21 @@ export class AuthPage {
 
   public efetuarLogin() {
     this.showLoading();
-    console.log(this.auth);
     this.auth.efetuarLogin(this.login, this.loading).subscribe(loginEfetuado => {
+      console.log("Chamando o login");
       if (loginEfetuado) {
-        // Deu tudo certo com o login: leva pra Home        
-        this.navCtrl.setRoot(HomePage);
+        // Deu tudo certo com o login: leva pra Home      
+        console.log("Login efetuado:" + loginEfetuado);  
+        this.auth.getAuthorization().subscribe(autorizacaoConcedida => {
+          if (autorizacaoConcedida) {
+            console.log("Autorização concedida:" + autorizacaoConcedida);  
+            console.log(autorizacaoConcedida);
+            this.navCtrl.setRoot(HomePage);
+          } else {
+            this.showError("Houve um problema na autorização.");
+          }
+        });
+
       } else {
         this.showError("Não foi possível efetuar o login");
       }

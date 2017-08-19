@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { AuthPage } from '../pages/auth/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
+import { LiberacaoPage } from '../pages/liberacao/liberacao';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,6 +20,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     AuthPage,
     ProfilePage,
     HomePage,
+    LiberacaoPage,
     ListPage
   ],
   imports: [
@@ -32,6 +34,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     AuthPage,
     ProfilePage,
     HomePage,
+    LiberacaoPage,
     ListPage
   ],
   providers: [

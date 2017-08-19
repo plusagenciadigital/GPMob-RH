@@ -1,68 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable, ViewChild } from '@angular/core';
+import { App, AlertController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { AlertController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-// Dados da solicitação
-export class Solicitacao {
-	login: string; 
-	id_autorizacao: number;
-	url_autorizacao: string;
-
-	constructor(login, id, url) {
-		this.login = login;
-		this.id_autorizacao = id;
-		this.url_autorizacao = url;
-	}
-
-	public getAuthorization(): boolean {
-  		// Requisição para token de autorização
-  		// Neste ponto o usuário já foi localizado no sistema pelo seu login =)
-  		return Observable.create(observer => {
-		 	// Host 
-		    var headers = new Headers();
-		    headers.append("Content-Type", "application/json");	    
-		    let requestOptions = new RequestOptions({headers: headers}); 
-		    let http: Http;
-
-		    var host = "http://hackathonapi.sefaz.al.gov.br/api/public/autenticar";		  	
-		  	var parametros = {
-		  		login: this.login,
-		  		idAutorizacao: this.id_autorizacao,
-		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
-		  	};
-
-			this.http.post(host, parametros, requestOptions)
-			    .map(res => res.json())
-			    .subscribe(
-			      data => {		
-			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
-			      	console.log(data);
-			      	return true;
-			      },
-			      err => {
-			        console.log(err);
-					return false;
-			      }
-			 );
-  		});		
-	}
-}
-
 // Dados do usuário
 export class User {
-	login: string;	
+	public login: string;	
+	public token: string;
+	public id_autorizacao: number;
+	public url_autorizacao: string;	
+	public liberado: boolean;
 
-	constructor(login: string) {
+	constructor(login: string, liberado: boolean, id_autorizacao: number, url_autorizacao: string) {
 		this.login = login;
+		this.liberado = liberado;
+		this.id_autorizacao = id_autorizacao;
+		this.url_autorizacao = url_autorizacao;
 	}
 }
 
 @Injectable()
 export class AuthServiceProvider {
   public currentUser: User;
-  public solicitacao: Solicitacao;
 
   public efetuarLogin(login, loadingToDismiss) {
   	if(login === null) {
@@ -88,10 +48,9 @@ export class AuthServiceProvider {
 			    .subscribe(
 			      data => {		
 			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
-			      	let solicitacao = new Solicitacao(login, data.idAutorizacao, data.urlAutorizacao);
-			      	if (solicitacao.getAuthorization()) {
-			      		this.erro("Logou com sucesso!");
-			      	}
+			      	this.currentUser = new User(login, false, data.idAutorizacao, data.urlAutorizacao);
+		  			observer.next(true);
+		  			observer.complete();			      	
 			      },
 			      err => {
 			      	var retorno = JSON.parse(err._body);
@@ -104,12 +63,50 @@ export class AuthServiceProvider {
   	}
   }
 
+  public getAuthorization() {
+  		// Requisição para token de autorização
+  		// Neste ponto o usuário já foi localizado no sistema pelo seu login =)
+  		return Observable.create(observer => {
+		 	// Host 
+		    var headers = new Headers();
+		    headers.append("Content-Type", "application/json");	    
+		    let requestOptions = new RequestOptions({headers: headers}); 
+		    let http: Http;
+
+		    var host = "http://hackathonapi.sefaz.al.gov.br/api/public/autenticar";		  	
+		  	var parametros = {
+		  		login: this.currentUser.login,
+		  		idAutorizacao: this.currentUser.id_autorizacao,
+		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
+		  	};
+
+			this.http.post(host, parametros, requestOptions)
+			    .map(res => res.json())
+			    .subscribe(
+			      data => {		
+			      	// 200 OK
+			      	if(data.id_token) {
+			      		// Token ok!! Uhuuuuuuuuuul
+			      		this.currentUser.liberado = true;
+			      		this.currentUser.token = data.id_token;
+		  				observer.next(true);
+		  				observer.complete();			      		
+			      	}
+			      },
+			      err => {
+			      	// Deu algum problema geral
+			        console.log(err);
+			      }
+			 );
+  		});		
+	}  
+
   public getUserInfo(): User {
   	return this.currentUser;
   }
 
-  constructor(public http: Http, public alertCtrl: AlertController) {
-    console.log('Hello AuthServiceProvider Provider');
+  constructor(public http: Http, public alertCtrl: AlertController, public app: App) {
+    //console.log('Hello AuthServiceProvider Provider');
   }
 
   erro(mensagem) {
@@ -119,6 +116,10 @@ export class AuthServiceProvider {
       buttons: ['OK']
     });
     alert.present();      
+  }
+
+  navegar(destino, parametros) {
+	this.app.getRootNav().setRoot(destino, parametros);  	
   }
 
 
