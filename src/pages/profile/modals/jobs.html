@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title><ion-icon name="person"></ion-icon> Dados profissionais</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Data de nomeação</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Data da posse</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Matrícula</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Número da ordem</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Lotação</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vínculo</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Cargo Efetivo</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Cargo Comissionado</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Função gratificada</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Grau de instrução</ion-label>
+      <ion-select>
+        <ion-option>Ensino médio completo</ion-option>
+        <ion-option>Ensino superior completo</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button ion-button full>Salvar</button>
+  </div>
+</ion-content>
