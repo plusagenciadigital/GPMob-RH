@@ -2,11 +2,11 @@
   <div class="login-flex">
     <div class="login-flex__content">
       <img src="" alt="" class="login__logo">
-      <form (ngSubmit)="login()" #loginForm="ngForm">
+      <form (ngSubmit)="efetuarLogin()" #loginForm="ngForm">
       <ion-list>
         <ion-item>
           <ion-label stacked>Código do contribuinte</ion-label>
-          <ion-input type="text" [(ngModel)]="codigo" name="codigo" required></ion-input>
+          <ion-input type="text" [(ngModel)]="login" name="login" required></ion-input>
         </ion-item>
       </ion-list>
 

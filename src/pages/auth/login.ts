@@ -3,13 +3,6 @@ import { NavController, NavParams, AlertController, LoadingController, Loading} 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../../pages/home/home';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
 @Component({
   selector: 'login',
   templateUrl: 'login.html',
@@ -17,7 +10,7 @@ import { HomePage } from '../../pages/home/home';
 
 export class AuthPage {
   public loading: Loading;
-  public codigo: string;
+  public login: string;
 
   constructor(
   	public navCtrl: NavController, 
@@ -27,14 +20,15 @@ export class AuthPage {
   	public navParams: NavParams) {
   }
 
-  public login() {
+  public efetuarLogin() {
     this.showLoading();
     console.log(this.auth);
-    this.auth.login(this.codigo, this.loading).subscribe(allowed => {
-      if (allowed) {        
+    this.auth.efetuarLogin(this.login, this.loading).subscribe(loginEfetuado => {
+      if (loginEfetuado) {
+        // Deu tudo certo com o login: leva pra Home        
         this.navCtrl.setRoot(HomePage);
       } else {
-        this.showError("Não foi possível efetuar o login. Verifique suas credenciais.");
+        this.showError("Não foi possível efetuar o login");
       }
     },
       error => {

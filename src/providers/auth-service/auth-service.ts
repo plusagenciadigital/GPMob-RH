@@ -6,31 +6,20 @@ import 'rxjs/add/operator/map';
 
 // Dados do usuário
 export class User {
-	codigo: string;
-	caceal: number;
-	cnpj: string; 
-	digitoCaceal: number;
-	razaoSocial: string;
-	nomeFantasia: string;
-	endereco: string;
-	numeroTelefone: string; 
-	descricaoSituacaoCadastral: string; 
-	naturezaJuridica: string;
-	tipoContribuinte: string;	
+	login: string;	
 
-	constructor(codigo: string) {
-		this.codigo = codigo;
+	constructor(login: string) {
+		this.login = login;
 	}
 }
-
 
 @Injectable()
 export class AuthServiceProvider {
   public currentUser: User;
 
-  public login(codigo, loadingToDismiss) {
-  	if(codigo === null) {
-  		return Observable.throw("Por favor, informe seu código de contibuinte.");
+  public efetuarLogin(login, loadingToDismiss) {
+  	if(login === null) {
+  		return Observable.throw("Por favor, informe seu login.");
   	} else {
 	    // Pegue o token
 	    var headers = new Headers();
