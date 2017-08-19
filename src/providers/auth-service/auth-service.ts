@@ -100,8 +100,8 @@ export class AuthServiceProvider {
 						.subscribe(dadosUsuario => {
 							this.currentUser.nome = dadosUsuario.nomeFuncionario;
 							this.currentUser.cargo = "Teste";
-							this.currentUser.dependentes = dependentes;
-							this.currentUser.grupos = grupos;
+							this.currentUser.dependentes = dadosUsuario.dependentes;
+							this.currentUser.grupos = dadosUsuario.grupos;
 						});
 			      },
 			      err => {
