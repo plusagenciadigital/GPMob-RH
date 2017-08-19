@@ -11,6 +11,10 @@ export class User {
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
+	public nome: string;
+	public dependentes: Object;
+	public grupos: Object;
+	public cargo: string;
 	public url_autorizacao: string;	
 	public liberado: boolean;
 
@@ -89,7 +93,16 @@ export class AuthServiceProvider {
 			      	// 200 OK
 			      		this.currentUser.liberado = true;
 			      		this.currentUser.token = data.id_token;
-			      		avancar = true;
+			      		avancar = true;	    
+
+			      		// Já pode pegar as informações do funcionário logado
+			      		this.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/fichaFuncional")
+						.subscribe(dadosUsuario => {
+							this.currentUser.nome = dadosUsuario.nomeFuncionario;
+							this.currentUser.cargo = "Teste";
+							this.currentUser.dependentes = dependentes;
+							this.currentUser.grupos = grupos;
+						});
 			      },
 			      err => {
 			      	// Deu algum problema
@@ -104,6 +117,36 @@ export class AuthServiceProvider {
 
   public getUserInfo(): User {
   	return this.currentUser;
+  }
+
+  // Padrão para fazer requisições para as API's
+  public getUserApiRequest(host, method = "get", parametros = {}) {
+	var headers = new Headers();
+	headers.append("Content-Type", "application/json");	    
+	headers.append("Authorization", "Bearer " + this.currentUser.token);	    
+	let requestOptions = new RequestOptions({headers: headers});  
+	    		
+  		// Requisição para solicitação de acesso
+  	return Observable.create(observer => {
+  		if (method == "get") {
+  			var req = this.http.get(host, requestOptions);
+  		} else {
+  			var req = this.http.post(host, parametros, requestOptions);
+  		}
+		
+		// Requisição padrão
+		req.map(res => res.json())
+		.subscribe(
+			data => {		
+				// 20x
+			    observer.next(data);
+			    observer.complete();
+			},
+			err => {
+			    this.erro(err.mensagem);
+			}
+		);
+	});		  	
   }
 
   constructor(public http: Http, public alertCtrl: AlertController, public app: App) {
