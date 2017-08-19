@@ -5,6 +5,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AuthPage } from '../pages/auth/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfilePersonal } from '../pages/profile/modals/personal';
+import { ProfileJobs } from '../pages/profile/modals/jobs';
+import { ProfileDocuments } from '../pages/profile/modals/documents';
+import { DependentsPage } from '../pages/profile/dependents/dependents';
+import { DependentsListPage } from '../pages/profile/dependents/dependents-list';
+import { OrdinancesPage } from '../pages/profile/ordinances/ordinances';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
@@ -16,6 +22,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AuthPage,
     ProfilePage,
+    ProfilePersonal,
+    ProfileJobs,
+    ProfileDocuments,
+    DependentsPage,
+    DependentsListPage,
+    OrdinancesPage,
     HomePage,
     ListPage
   ],
@@ -28,6 +40,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AuthPage,
     ProfilePage,
+    ProfilePersonal,
+    ProfileJobs,
+    ProfileDocuments,
+    DependentsPage,
+    DependentsListPage,
+    OrdinancesPage,
     HomePage,
     ListPage
   ],

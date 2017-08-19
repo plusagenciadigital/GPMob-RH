@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar class="toolbar-theme">
+    <ion-buttons start>
+      <button ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!-- <button ion-button menuToggle>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button> -->
+
+    <ion-title>Portarias</ion-title>
+
+    <ion-buttons end>
+      <button ion-button>
+        Sair
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-card *ngFor="let ordinance of ordinancesList" #item>
+    <ion-card-header>
+      {{ordinance.dataInclusao}}
+      <button ion-button color="danger" small>
+        <ion-icon name="alert"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content>
+      {{ordinance.descricao}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
