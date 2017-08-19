@@ -6,59 +6,75 @@ import 'rxjs/add/operator/map';
 
 // Dados do usuário
 export class User {
-	client_secret: string;
-	client_id: number;
+	codigo: string;
+	caceal: number;
+	cnpj: string; 
+	digitoCaceal: number;
+	razaoSocial: string;
+	nomeFantasia: string;
+	endereco: string;
+	numeroTelefone: string; 
+	descricaoSituacaoCadastral: string; 
+	naturezaJuridica: string;
+	tipoContribuinte: string;	
 
-	constructor(client_id: number, client_secret: string) {
-		this.client_id = client_id;
-		this.client_secret = client_secret;
+	constructor(codigo: string) {
+		this.codigo = codigo;
 	}
 }
 
 
 @Injectable()
 export class AuthServiceProvider {
-  currentUser: User;
+  public currentUser: User;
 
-  public login(email, password, loadingToDismiss) {
-  	if(email === null || password === null) {
-  		return Observable.throw("Por favor, informe seus dados.");
+  public login(codigo, loadingToDismiss) {
+  	if(codigo === null) {
+  		return Observable.throw("Por favor, informe seu código de contibuinte.");
   	} else {
 	    // Pegue o token
 	    var headers = new Headers();
-	    headers.append("Accept", "application/json");
 	    headers.append("Content-Type", "application/json");
-	    headers.append("Authorization", "application/json");
+	    // estático por enquanto..
+	    headers.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyNDg0NTgwMCIsImF1dGgiOiJST0xFX0VNSV9FWFRSQVRPLFJPTEVfUkVMX0RFTlVOX0VTUE9OVEFORUEsUk9MRV9FTUlfQ1AsUk9MRV9SRUxfT01JU1NBTyIsImlkQ29uZXhhbyI6IkYxQ0VENTUwNEMwQkMyRjhCRjM4MjBCMEE2NjJGRTA2IiwibnVtUGVzc29hIjo5MzkxOSwiaW5kU3RhdHVzIjoiQSIsImlkQXBsaWNhdGl2byI6MjksImlkQXV0b3JpemFjYW8iOjU5LCJleHAiOjE1MTg5MTIwMDB9.5CNocTB8hoX6VZWWgDwgmg5QChtpg7PlYfKLGgNyOvjPznUY5bpVK0fZ6V_8lU_7NplMRd4XCJdtUgqHi6H7-w");
+	    
 	    let options = new RequestOptions({headers: headers});  
+	    console.log(options);
 	    		
   		return Observable.create(observer => {
 		 	// Host 
-		    var host = "";
-		    //var host = "www.linnoplus.com";
-
-		    let postParams = {
-		      login: email,
-		      senha: password
-		    }   
-
-		    // Tenta fazer o login na Linnoplus
-			this.http.post("http://"+ host +"/api/v1/login", postParams, options)
+		    var host = "http://hackathonapi.sefaz.al.gov.br/sfz_cadastro_api/api/public/contribuinte/obterContribuinte/" + codigo;
+		   
+			this.http.get(host, options)
 			    .map(res => res.json())
 			    .subscribe(
 			      data => {
-			      	if(data.retorno) {
-		  				this.currentUser = new User(data.cod, data.token);
-		  				observer.next(true);
-		  				observer.complete();
+			      	// 200 OK
+			      	if(data != '') {
+			      		// Me refatora, por favor!!
+		  				this.currentUser = new User(codigo);
+		  				this.currentUser.caceal = data.caceal;
+		  				this.currentUser.cnpj = data.cnpj;
+		  				this.currentUser.digitoCaceal = data.digitoCaceal;
+		  				this.currentUser.razaoSocial = data.razaoSocial;
+		  				this.currentUser.nomeFantasia = data.nomeFantasia;
+		  				this.currentUser.endereco = data.endereco;
+		  				this.currentUser.numeroTelefone = data.numeroTelefone;
+		  				this.currentUser.descricaoSituacaoCadastral = data.descricaoSituacaoCadastral;
+		  				this.currentUser.naturezaJuridica = data.naturezaJuridica;
+		  				this.currentUser.tipoContribuinte = data.tipoContribuinte;	
 		  			} else {
-		  				this.erro("Credenciais inválidas.");
+		  				this.erro("Login inválido.");
 			        	loadingToDismiss.dismiss();
 		  			}
 			      },
 			      err => {
-			        this.erro("Houve um problema com a autenticação.");
+			        this.erro("Não foi possível acessar a aplicação: " + err.error);
 			      }
 			 );
+
+			 loadingToDismiss.dismiss();
+
   		});
   	}
   }
