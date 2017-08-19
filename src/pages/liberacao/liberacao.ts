@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider, User } from '../../providers/auth-service/auth-service';
+import { HomePage } from '../../pages/home/home';
 
 /**
  * Generated class for the LiberacaoPage page.
@@ -17,8 +18,24 @@ import { AuthServiceProvider, User } from '../../providers/auth-service/auth-ser
 export class LiberacaoPage {
   public usuario: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthServiceProvider) {
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public auth: AuthServiceProvider) {
   	this.usuario = this.auth.getUserInfo();
+  }
+
+  public liberacaoFeita () {
+  	// Verifica se o usuário realmente fez a liberação
+  	this.auth.getAuthorization().subscribe(autorizacaoConcedida => {
+    	if (this.usuario.liberado) {
+            this.navCtrl.setRoot(HomePage);    		
+     	} else {
+		    let alert = this.alertCtrl.create({
+		      title: 'Erro',
+		      subTitle: "O aplicativo ainda não foi autorizado.",
+		      buttons: ['OK']
+		    });
+		    alert.present(prompt);     		
+    	}
+    });
   }
 
 

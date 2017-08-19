@@ -52,7 +52,6 @@ export class AuthServiceProvider {
 			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
 			      	this.currentUser = new User(login, false, data.idAutorizacao, data.urlAutorizacao);
 		  			observer.next(true);
-		  			observer.complete();			      	
 			      },
 			      err => {
 			      	var retorno = JSON.parse(err._body);
@@ -87,24 +86,21 @@ export class AuthServiceProvider {
 			    .map(res => res.json())
 			    .subscribe(
 			      data => {		
-			      	// 200 OK
-			      	if(data.id_token) {
-			      		// Token ok!! Uhuuuuuuuuuul
+				      	// 200 OK
 			      		this.currentUser.liberado = true;
 			      		this.currentUser.token = data.id_token;
 			      		next = true;
-			      	}
 			      },
 			      err => {
 			      	// Deu algum problema geral
 			      	next = false;
 			      }
 			 );
-		  	observer.next(next);			      		
+		  	observer.next(next);
 		  	observer.complete();			      		
 
   		});		
-	}  
+  }    
 
   public getUserInfo(): User {
   	return this.currentUser;
