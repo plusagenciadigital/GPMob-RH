@@ -15,10 +15,10 @@
 </ion-header>
 
 <ion-content class="dashboard" padding>
-  <section class="dashboard-avatar">
+  <section class="dashboard-avatar" *ngIf="usuario">
     <img src="" alt="" class="thumb">
-    <h1 class="name">{{ usuario.nome }}</h1>
-    <h2 class="role">{{ usuario.cargo }}</h2>
+    <h1 class="name">{{ usuario.dados.nomeFuncionario }}</h1>
+    <h2 class="role">Cargo</h2>
   </section>
 
   <ion-grid class="dashboard-items">
