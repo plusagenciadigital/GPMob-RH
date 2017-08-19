@@ -4,6 +4,52 @@ import { AlertController, NavController, NavParams, LoadingController } from 'io
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+// Dados da solicitação
+export class Solicitacao {
+	login: string; 
+	id_autorizacao: number;
+	url_autorizacao: string;
+
+	constructor(login, id, url) {
+		this.login = login;
+		this.id_autorizacao = id;
+		this.url_autorizacao = url;
+	}
+
+	public getAuthorization(): boolean {
+  		// Requisição para token de autorização
+  		// Neste ponto o usuário já foi localizado no sistema pelo seu login =)
+  		return Observable.create(observer => {
+		 	// Host 
+		    var headers = new Headers();
+		    headers.append("Content-Type", "application/json");	    
+		    let requestOptions = new RequestOptions({headers: headers}); 
+		    let http: Http;
+
+		    var host = "http://hackathonapi.sefaz.al.gov.br/api/public/autenticar";		  	
+		  	var parametros = {
+		  		login: this.login,
+		  		idAutorizacao: this.id_autorizacao,
+		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
+		  	};
+
+			this.http.post(host, parametros, requestOptions)
+			    .map(res => res.json())
+			    .subscribe(
+			      data => {		
+			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
+			      	console.log(data);
+			      	return true;
+			      },
+			      err => {
+			        console.log(err);
+					return false;
+			      }
+			 );
+  		});		
+	}
+}
+
 // Dados do usuário
 export class User {
 	login: string;	
@@ -16,54 +62,44 @@ export class User {
 @Injectable()
 export class AuthServiceProvider {
   public currentUser: User;
+  public solicitacao: Solicitacao;
 
   public efetuarLogin(login, loadingToDismiss) {
   	if(login === null) {
   		return Observable.throw("Por favor, informe seu login.");
   	} else {
-	    // Pegue o token
+	    // Solicite o token
 	    var headers = new Headers();
-	    headers.append("Content-Type", "application/json");
-	    // estático por enquanto..
-	    headers.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyNDg0NTgwMCIsImF1dGgiOiJST0xFX0VNSV9FWFRSQVRPLFJPTEVfUkVMX0RFTlVOX0VTUE9OVEFORUEsUk9MRV9FTUlfQ1AsUk9MRV9SRUxfT01JU1NBTyIsImlkQ29uZXhhbyI6IkYxQ0VENTUwNEMwQkMyRjhCRjM4MjBCMEE2NjJGRTA2IiwibnVtUGVzc29hIjo5MzkxOSwiaW5kU3RhdHVzIjoiQSIsImlkQXBsaWNhdGl2byI6MjksImlkQXV0b3JpemFjYW8iOjU5LCJleHAiOjE1MTg5MTIwMDB9.5CNocTB8hoX6VZWWgDwgmg5QChtpg7PlYfKLGgNyOvjPznUY5bpVK0fZ6V_8lU_7NplMRd4XCJdtUgqHi6H7-w");
-	    
-	    let options = new RequestOptions({headers: headers});  
-	    console.log(options);
+	    headers.append("Content-Type", "application/json");	    
+	    let requestOptions = new RequestOptions({headers: headers});  
 	    		
+  		// Requisição para solicitação de acesso
   		return Observable.create(observer => {
 		 	// Host 
-		    //var host = "http://hackathonapi.sefaz.al.gov.br/sfz_cadastro_api/api/public/contribuinte/obterContribuinte/" + login;
-		   
-			this.http.get(host, options)
+		    var host = "http://hackathonapi.sefaz.al.gov.br/sfz-habilitacao-aplicativo-api/api/public/autorizacao-aplicativo/solicitar";		  	
+		  	var parametros = {
+		  		login: login, // desmistificando: parâmetro que vai pro post = parâmetro que vem do método.
+		  		nomeDispositivo: "PLUS-GPMOB",
+		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
+		  	};
+
+			this.http.post(host, parametros, requestOptions)
 			    .map(res => res.json())
 			    .subscribe(
-			      data => {
-			      	// 200 OK
-			      	if(data != '') {
-			      		// Me refatora, por favor!!
-		  				this.currentUser = new User(codigo);
-		  				this.currentUser.caceal = data.caceal;
-		  				this.currentUser.cnpj = data.cnpj;
-		  				this.currentUser.digitoCaceal = data.digitoCaceal;
-		  				this.currentUser.razaoSocial = data.razaoSocial;
-		  				this.currentUser.nomeFantasia = data.nomeFantasia;
-		  				this.currentUser.endereco = data.endereco;
-		  				this.currentUser.numeroTelefone = data.numeroTelefone;
-		  				this.currentUser.descricaoSituacaoCadastral = data.descricaoSituacaoCadastral;
-		  				this.currentUser.naturezaJuridica = data.naturezaJuridica;
-		  				this.currentUser.tipoContribuinte = data.tipoContribuinte;	
-		  			} else {
-		  				this.erro("Login inválido.");
-			        	loadingToDismiss.dismiss();
-		  			}
+			      data => {		
+			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
+			      	let solicitacao = new Solicitacao(login, data.idAutorizacao, data.urlAutorizacao);
+			      	if (solicitacao.getAuthorization()) {
+			      		this.erro("Logou com sucesso!");
+			      	}
 			      },
 			      err => {
-			        this.erro("Não foi possível acessar a aplicação: " + err.error);
+			      	var retorno = JSON.parse(err._body);
+			        this.erro(retorno.mensagem);
 			      }
 			 );
 
 			 loadingToDismiss.dismiss();
-
   		});
   	}
   }
