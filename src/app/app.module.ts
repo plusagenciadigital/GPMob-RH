@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { AuthPage } from '../pages/auth/login';
+import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
@@ -16,6 +17,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   declarations: [
     MyApp,
     AuthPage,
+    ProfilePage,
     HomePage,
     ListPage
   ],
@@ -28,6 +30,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   entryComponents: [
     MyApp,
     AuthPage,
+    ProfilePage,
     HomePage,
     ListPage
   ],

@@ -32,7 +32,7 @@ export class AuthServiceProvider {
 	    		
   		return Observable.create(observer => {
 		 	// Host 
-		    var host = "http://hackathonapi.sefaz.al.gov.br/sfz_cadastro_api/api/public/contribuinte/obterContribuinte/" + codigo;
+		    //var host = "http://hackathonapi.sefaz.al.gov.br/sfz_cadastro_api/api/public/contribuinte/obterContribuinte/" + login;
 		   
 			this.http.get(host, options)
 			    .map(res => res.json())

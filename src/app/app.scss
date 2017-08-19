@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.toolbar-theme {
+  .toolbar-background {
+    background: #0d377f;
+  }
+  .toolbar-title-md,
+  .toolbar-title-ios,
+  .bar-button-default-md,
+  .bar-button-default-ios {
+    color: #fff;
+  }
+}

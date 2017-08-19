@@ -1,5 +1,10 @@
 .login {
-  background: #dedede;
+  background: #0d377f;
+
+  .scroll-content {
+    overflow: hidden;
+    padding: 0 !important;
+  }
 }
 
 .login-flex {
@@ -22,7 +27,7 @@
 
 .login__logo {
   display: block;
-  background: #488aff;
+  background: #ffffff;
   width: 200px;
   height: 90px;
   margin: 0 auto 60px;
