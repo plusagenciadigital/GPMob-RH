@@ -123,5 +123,12 @@ export class AuthServiceProvider {
 	this.app.getRootNav().setRoot(destino, parametros);  	
   }
 
+  public logout() {
+    return Observable.create(observer => {
+      this.currentUser = null;
+      observer.next(true);
+      observer.complete();
+    });
+   }	
 
 }
