@@ -81,22 +81,22 @@ export class AuthServiceProvider {
 		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
 		  	};
 
-		  	var next = false;
+		  	var avancar = false;
 			this.http.post(host, parametros, requestOptions)
 			    .map(res => res.json())
 			    .subscribe(
 			      data => {		
-				      	// 200 OK
+			      	// 200 OK
 			      		this.currentUser.liberado = true;
 			      		this.currentUser.token = data.id_token;
-			      		next = true;
+			      		avancar = true;
 			      },
 			      err => {
-			      	// Deu algum problema geral
-			      	next = false;
+			      	// Deu algum problema
+			      	avancar = false;
 			      }
 			 );
-		  	observer.next(next);
+		  	observer.next(avancar);
 		  	observer.complete();			      		
 
   		});		

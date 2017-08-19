@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider, User } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../../pages/home/home';
-
 /**
  * Generated class for the LiberacaoPage page.
  *
@@ -24,18 +23,19 @@ export class LiberacaoPage {
 
   public liberacaoFeita () {
   	// Verifica se o usuário realmente fez a liberação
-  	this.auth.getAuthorization().subscribe(autorizacaoConcedida => {
-    	if (this.usuario.liberado) {
-            this.navCtrl.setRoot(HomePage);    		
-     	} else {
-		    let alert = this.alertCtrl.create({
-		      title: 'Erro',
-		      subTitle: "O aplicativo ainda não foi autorizado.",
-		      buttons: ['OK']
-		    });
-		    alert.present(prompt);     		
-    	}
-    });
+  	this.auth.getAuthorization().subscribe(
+  		autorizacao => {
+  			console.log(autorizacao);
+  		},
+  		error => {
+  			console.log(error);
+  		},
+  		complete => {
+	    	if (this.usuario.liberado) {
+	        	this.navCtrl.setRoot(HomePage);    		
+	     	}  			
+  		}
+  	);
   }
 
 
