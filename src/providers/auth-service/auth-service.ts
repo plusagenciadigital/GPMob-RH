@@ -3,6 +3,8 @@ import { App, AlertController, NavController, NavParams, LoadingController } fro
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { LiberacaoPage } from '../../pages/liberacao/liberacao';
+
 
 // Dados do usuário
 export class User {
@@ -80,6 +82,7 @@ export class AuthServiceProvider {
 		  		tokenApp: "64cfdcee98ea53c99741bb4d285ece934209f237"
 		  	};
 
+		  	var next = false;
 			this.http.post(host, parametros, requestOptions)
 			    .map(res => res.json())
 			    .subscribe(
@@ -89,15 +92,17 @@ export class AuthServiceProvider {
 			      		// Token ok!! Uhuuuuuuuuuul
 			      		this.currentUser.liberado = true;
 			      		this.currentUser.token = data.id_token;
-		  				observer.next(true);
-		  				observer.complete();			      		
+			      		next = true;
 			      	}
 			      },
 			      err => {
 			      	// Deu algum problema geral
-			        console.log(err);
+			      	next = false;
 			      }
 			 );
+		  	observer.next(next);			      		
+		  	observer.complete();			      		
+
   		});		
 	}  
 
@@ -118,7 +123,7 @@ export class AuthServiceProvider {
     alert.present();      
   }
 
-  navegar(destino, parametros) {
+  navegar(destino, parametros = {}) {
 	this.app.getRootNav().setRoot(destino, parametros);  	
   }
 

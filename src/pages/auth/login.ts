@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../../pages/home/home';
+import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 
 @Component({
   selector: 'login',
@@ -26,14 +27,10 @@ export class AuthPage {
       console.log("Chamando o login");
       if (loginEfetuado) {
         // Deu tudo certo com o login: leva pra Home      
-        console.log("Login efetuado:" + loginEfetuado);  
         this.auth.getAuthorization().subscribe(autorizacaoConcedida => {
           if (autorizacaoConcedida) {
-            console.log("Autorização concedida:" + autorizacaoConcedida);  
-            console.log(autorizacaoConcedida);
-            this.navCtrl.setRoot(HomePage);
           } else {
-            this.showError("Houve um problema na autorização.");
+            this.navCtrl.setRoot(LiberacaoPage);
           }
         });
 
@@ -54,9 +51,7 @@ export class AuthPage {
     this.loading.present();
   }
 
-  showError(text) {
-    this.loading.dismiss();
- 
+  showError(text) { 
     let alert = this.alertCtrl.create({
       title: 'Erro',
       subTitle: text,
