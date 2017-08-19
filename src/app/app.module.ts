@@ -6,6 +6,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AuthPage } from '../pages/auth/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfilePersonal } from '../pages/profile/modals/personal';
+import { ProfileJobs } from '../pages/profile/modals/jobs';
+import { ProfileDocuments } from '../pages/profile/modals/documents';
+import { DependentsPage } from '../pages/profile/dependents/dependents';
+import { DependentsListPage } from '../pages/profile/dependents/dependents-list';
+import { OrdinancesPage } from '../pages/profile/ordinances/ordinances';
 import { HomePage } from '../pages/home/home';
 import { LiberacaoPage } from '../pages/liberacao/liberacao';
 import { ListPage } from '../pages/list/list';
@@ -19,6 +25,12 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     AuthPage,
     ProfilePage,
+    ProfilePersonal,
+    ProfileJobs,
+    ProfileDocuments,
+    DependentsPage,
+    DependentsListPage,
+    OrdinancesPage,
     HomePage,
     LiberacaoPage,
     ListPage
@@ -33,6 +45,12 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     MyApp,
     AuthPage,
     ProfilePage,
+    ProfilePersonal,
+    ProfileJobs,
+    ProfileDocuments,
+    DependentsPage,
+    DependentsListPage,
+    OrdinancesPage,
     HomePage,
     LiberacaoPage,
     ListPage
