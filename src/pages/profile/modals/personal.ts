@@ -9,16 +9,28 @@ import { UploadModal } from '../../modals/upload';
 export class ProfilePersonal {
   public dados;
 
+  public alterarPerfil: Object = {nome: '', endereco: ''};
   constructor(public viewCtrl: ViewController, public modalCtrl: ModalController, public params: NavParams) {
     this.dados = params.get('dados')
   }
 
-  uploadModal() {
-    let uploadModal = this.modalCtrl.create(UploadModal);
+  uploadModal(id) {
+    let uploadModal = this.modalCtrl.create(UploadModal, {idParaAnexo: id});
     uploadModal.present();
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
+
+  updateProfile(arquivo = null) {
+    let parametros = {descricao: this.alterarPerfil.nome, tipoDadoFichaFuncional: 1};
+    this.auth.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/dadoFichaFuncional", "post", parametros)
+    .subscribe(retorno => {
+      // Deu certo. Chame o modal de upload de anexo e vamos tentar utilizá-lo.
+      this.uploadModal(retorno.id);
+    },
+    );    
+  }
+
 }

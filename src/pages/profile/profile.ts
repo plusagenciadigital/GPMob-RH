@@ -16,9 +16,6 @@ export class ProfilePage {
 
  constructor(public modalCtrl: ModalController, public alertCtrl: AlertController, private auth: AuthServiceProvider) {
     this.usuario = this.auth.getUserInfo();
-    //console.log(this.usuario.dadosPessoais);
-    //console.log(this.usuario.dadosProfissionais);
-    //console.log(this.usuario.documentos);
  }
 
   profileModalPersonal() {
