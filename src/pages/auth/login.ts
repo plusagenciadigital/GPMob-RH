@@ -67,8 +67,10 @@ export class AuthPage {
 
   appInitialized() {
     setTimeout(() => {
-      var loader = document.getElementsByClassName('login')[0];
-      loader.classList.add('in');
+      var loader = document.getElementsByClassName('login');
+      if(loader.length === 1) {
+        loader[0].classList.add('in');
+      }
     }, 3000);
   }
 
