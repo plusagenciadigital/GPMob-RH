@@ -22,6 +22,10 @@ a:focus {
   outline: none;
 }
 
+.ion-page > ion-content {
+  background: #eaeaea;
+}
+
 .toolbar-theme {
   .toolbar-background {
     background: #0d377f;
@@ -30,7 +34,7 @@ a:focus {
   .toolbar-title-ios,
   .bar-button-default-md,
   .bar-button-default-ios {
-    color: #fff;
+    color: #f9f9f9;
   }
 }
 
@@ -47,7 +51,7 @@ a:focus {
 }
 .progress {
   position: relative;
-  background: #eaeaea;
+  background: #fff;
   width: 100%;
   height: 10px;
   margin-bottom: 20px;
