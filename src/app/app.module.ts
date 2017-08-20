@@ -48,7 +48,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: ''
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
