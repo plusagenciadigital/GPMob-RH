@@ -11,10 +11,11 @@
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="updateProfile()" #loginForm="ngForm">
   <ion-list>
     <ion-item>
       <ion-label floating>Nome completo</ion-label>
-      <ion-input type="text" ngValue=""></ion-input>
+      <ion-input type="text" value="" name="nome" [(ngModel)]="alterarPerfil.nome"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data de nascimento</ion-label>
@@ -37,7 +38,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Endereço</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" name="endereco" [(ngModel)]="alterarPerfil.endereco"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Telefone</ion-label>
@@ -46,6 +47,7 @@
   </ion-list>
 
   <div padding>
-    <button ion-button full (click)="uploadModal()">Solicitar</button>
+    <button ion-button full>Solicitar</button>
   </div>
+  </form>
 </ion-content>

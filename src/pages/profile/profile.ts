@@ -16,13 +16,10 @@ export class ProfilePage {
  
  constructor(public modalCtrl: ModalController, public alertCtrl: AlertController, private auth: AuthServiceProvider) {
     this.usuario = this.auth.getUserInfo();
-    //console.log(this.usuario.dadosPessoais);
-    //console.log(this.usuario.dadosProfissionais);
-    //console.log(this.usuario.documentos);
  }
 
   profileModalPersonal() {
-    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario.dadosPessoais});
+    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario.dadosPessoais);
     profilePersonal.present();
   }
   profileModalJobs() {
@@ -34,26 +31,6 @@ export class ProfilePage {
     profileDocuments.present();
   }
 
-  updateProfile(arquivo = null) {
-    let parametros = {descricao: "Clenisson", tipoDadoFichaFuncional: 2};
-    this.auth.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/dadoFichaFuncional", "post", parametros)
-    .subscribe(retorno => {
-      this.idParaAnexo = retorno.id;
-    },
-    erro => {
-      // Mensagem de erro
-    }
-    );    
-  }
-
-  sendFile(file) {
-    let id = this.idParaAnexo;
-    let paramsAnexo = {anexo: file, id: id};
-    this.auth.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/dadoFichaFuncional/anexo", "post", paramsAnexo)
-    .subscribe(retorno => {
-      // Alerta informando que o anexo foi enviado com sucesso.
-    });
-  }
 
 
   showError(text) {
