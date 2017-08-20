@@ -26,7 +26,7 @@ export class ProfilePersonal {
     this.viewCtrl.dismiss();
   }
 
-  updateProfile(arquivo = null) {
+  updateProfile() {
     let parametros = {descricao: this.alterarPerfil.nome, tipoDadoFichaFuncional: 1};
     this.auth.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/dadoFichaFuncional", "post", parametros)
     .subscribe(retorno => {
