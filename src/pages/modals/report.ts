@@ -14,7 +14,7 @@ export class ReportError {
 
   request() {
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: "Enviando solicitacão..."
     });
     const toast = this.toastCtrl.create({
       message: "Sua solicitação foi enviada com sucesso",
