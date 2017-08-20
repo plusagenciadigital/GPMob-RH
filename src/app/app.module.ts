@@ -19,7 +19,6 @@ import { DecreesPage } from '../pages/profile/decrees/decrees';
 import { DailyPage } from '../pages/profile/daily/daily';
 import { HomePage } from '../pages/home/home';
 import { LiberacaoPage } from '../pages/liberacao/liberacao';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,8 +41,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     DecreesPage,
     DailyPage,
     HomePage,
-    LiberacaoPage,
-    ListPage
+    LiberacaoPage
   ],
   imports: [
     BrowserModule,
@@ -67,8 +65,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     DecreesPage,
     DailyPage,
     HomePage,
-    LiberacaoPage,
-    ListPage
+    LiberacaoPage
   ],
   providers: [
     StatusBar,
