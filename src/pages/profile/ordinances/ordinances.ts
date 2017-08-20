@@ -20,7 +20,21 @@ export class OrdinancesPage {
 
   initializeItems() {
     // Busca as portarias do usuário
-    var portarias = this.usuario.dados.grupos[1].dados;
+    var portarias = Array();
+    var portariasUsuario = this.usuario.portarias;
+    var tiposDePortarias = ["Assessoramentos", "Chefias", "Penalidades", "Designação para compor Comissão", "Plantão", "Apostilamento de Quinquênios", "Abono Permanência"];
+    
+    for (var index in tiposDePortarias) {
+      var nomeTipo = tiposDePortarias[index];
+      console.log(portariasUsuario[nomeTipo]);
+      if(portariasUsuario[nomeTipo] != undefined) {
+        for(var pIndex in portariasUsuario[nomeTipo]) {
+          portarias.push(portariasUsuario[nomeTipo][pIndex]);
+        }
+      }    
+    }
+
+    console.log(portarias);
     this.ordinancesList = portarias;
   }
 

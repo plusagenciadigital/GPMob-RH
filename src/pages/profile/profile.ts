@@ -3,6 +3,7 @@ import { ModalController } from 'ionic-angular';
 import { ProfilePersonal } from './modals/personal';
 import { ProfileJobs } from './modals/jobs';
 import { ProfileDocuments } from './modals/documents';
+import { User, AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @Component({
   selector: 'profile-page',
@@ -10,10 +11,18 @@ import { ProfileDocuments } from './modals/documents';
   entryComponents: [ ProfilePersonal ]
 })
 export class ProfilePage {
- constructor(public modalCtrl: ModalController) {}
+ private usuario: User;
+
+ 
+ constructor(public modalCtrl: ModalController, private auth: AuthServiceProvider) {
+    this.usuario = this.auth.getUserInfo();
+    //console.log(this.usuario.dadosPessoais);
+    //console.log(this.usuario.dadosProfissionais);
+    //console.log(this.usuario.documentos);
+ }
 
   profileModalPersonal() {
-    let profilePersonal = this.modalCtrl.create(ProfilePersonal);
+    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario.dadosPessoais});
     profilePersonal.present();
   }
   profileModalJobs() {

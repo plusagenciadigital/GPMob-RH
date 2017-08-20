@@ -18,7 +18,7 @@ export class EndorsementsPage {
   }
 
   initializeItems() {
-    var averbacoes = this.usuario.dados.grupos[0].dados;
+    var averbacoes = this.usuario.averbacoes;
     this.endorsementsList = averbacoes;
   }
 

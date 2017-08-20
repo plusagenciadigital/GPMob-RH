@@ -9,6 +9,7 @@ import { StockingPage } from '../profile/stocking/stocking';
 import { LicensesPage } from '../profile/licenses/licenses';
 import { DecreesPage } from '../profile/decrees/decrees';
 import { DailyPage } from '../profile/daily/daily';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -54,6 +55,10 @@ export class HomePage {
 
   goToDaily() {
     this.navCtrl.push(DailyPage);
-  }         
+  } 
+
+  goToProfile() {
+    this.navCtrl.push(ProfilePage);
+  }              
 
 }
