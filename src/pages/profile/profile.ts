@@ -13,7 +13,7 @@ import { User, AuthServiceProvider } from '../../providers/auth-service/auth-ser
 export class ProfilePage {
  private usuario: User;
  private idParaAnexo: number;
- 
+
  constructor(public modalCtrl: ModalController, public alertCtrl: AlertController, private auth: AuthServiceProvider) {
     this.usuario = this.auth.getUserInfo();
     //console.log(this.usuario.dadosPessoais);
@@ -22,7 +22,7 @@ export class ProfilePage {
  }
 
   profileModalPersonal() {
-    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario.dadosPessoais});
+    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario});
     profilePersonal.present();
   }
   profileModalJobs() {
@@ -43,7 +43,7 @@ export class ProfilePage {
     erro => {
       // Mensagem de erro
     }
-    );    
+    );
   }
 
   sendFile(file) {
@@ -63,5 +63,5 @@ export class ProfilePage {
       buttons: ['OK']
     });
     alert.present(prompt);
-  }  
+  }
 }

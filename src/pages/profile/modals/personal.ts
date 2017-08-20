@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, ModalController } from 'ionic-angular';
+import { ViewController, ModalController, NavParams } from 'ionic-angular';
 import { UploadModal } from '../../modals/upload';
 
 @Component({
@@ -7,7 +7,11 @@ import { UploadModal } from '../../modals/upload';
   templateUrl: './personal.html'
 })
 export class ProfilePersonal {
-  constructor(public viewCtrl: ViewController, public modalCtrl: ModalController) {}
+  public dados;
+
+  constructor(public viewCtrl: ViewController, public modalCtrl: ModalController, public params: NavParams) {
+    this.dados = params.get('dados')
+  }
 
   uploadModal() {
     let uploadModal = this.modalCtrl.create(UploadModal);

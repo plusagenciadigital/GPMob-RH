@@ -13,12 +13,15 @@
 <ion-content>
   <ion-list>
     <ion-item>
+      {{dados.dadosPessoais['Data de Nascimento']}}
+    </ion-item>
+    <ion-item>
       <ion-label floating>Nome completo</ion-label>
-      <ion-input type="text" ngValue=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosPessoais['Nome']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data de nascimento</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" value="01/01/2017"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label floating>Nome do pai</ion-label>
@@ -30,7 +33,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Estado civil</ion-label>
-      <ion-select>
+      <ion-select value="">
         <ion-option>Solteiro</ion-option>
         <ion-option>Casado</ion-option>
       </ion-select>
