@@ -16,15 +16,21 @@
 
 <ion-content class="dashboard" padding>
   <section class="dashboard-avatar" *ngIf="usuario">
-    <img src="" alt="" class="thumb">
+    <img src="assets/images/avatar.jpg" alt="" class="thumb">
     <h1 class="name">{{ usuario.dados.nomeFuncionario }}</h1>
     <h2 class="role">{{ usuario.dados.grupos[2].dados[10].descricao }}</h2>
   </section>
 
   <ion-grid class="dashboard-items">
     <ion-row>
+      <ion-col col-12>
+        <span class="progress-state">Seu perfil: <strong>Nível intermediário</strong></span>
+        <div class="progress"><div style="width: 76%"></div></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-6>
-        <a href="javascript:;" class="flex">
+        <a href="javascript:;" class="flex alert">
           <div class="item">
             <ion-icon name="contact"></ion-icon>
             <span class="title">Meu cadastro</span>
@@ -32,7 +38,7 @@
         </a>
       </ion-col>
       <ion-col col-6>
-        <a (click)="goToDependents()" class="flex">
+        <a (click)="goToDependents()" class="flex alert">
           <div class="item">
             <ion-icon name="people"></ion-icon>
             <span class="title">Dependentes</span>
@@ -44,7 +50,7 @@
       <ion-col col-6>
         <a (click)="goToEndorsements()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="paper"></ion-icon>
             <span class="title">Averbações</span>
           </div>
         </a>
@@ -52,7 +58,7 @@
       <ion-col col-6>
         <a (click)="goToOrdinances()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="refresh"></ion-icon>
             <span class="title">Portarias</span>
           </div>
         </a>
@@ -62,7 +68,7 @@
       <ion-col col-6>
         <a (click)="goToStocking()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="map"></ion-icon>
             <span class="title">Lotação</span>
           </div>
         </a>
@@ -70,7 +76,7 @@
       <ion-col col-6>
         <a (click)="goToDaily()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="key"></ion-icon>
             <span class="title">Diárias</span>
           </div>
         </a>
@@ -80,7 +86,7 @@
       <ion-col col-6>
         <a (click)="goToLicenses()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="list-box"></ion-icon>
             <span class="title">Licenças</span>
           </div>
         </a>
@@ -88,7 +94,7 @@
       <ion-col col-6>
         <a (click)="goToDecrees()" class="flex">
           <div class="item">
-            <ion-icon name="log-out"></ion-icon>
+            <ion-icon name="folder-open"></ion-icon>
             <span class="title">Decretos</span>
           </div>
         </a>

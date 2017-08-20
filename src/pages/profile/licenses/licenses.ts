@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
 import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
-
+import { ModalController } from 'ionic-angular';
+import { ReportError } from '../../modals/report';
 
 @Component({
   selector: 'licenses',
-  templateUrl: 'licenses.html'
+  templateUrl: 'licenses.html',
+  entryComponents: [ ReportError ]
 })
 export class LicensesPage {
   private usuario: User;
   licensesList;
 
-  constructor(private auth: AuthServiceProvider) {
+  constructor(public modalCtrl: ModalController, private auth: AuthServiceProvider) {
     this.usuario = this.auth.getUserInfo();
     this.initializeItems();
   }
 
   initializeItems() {
     //this.licensesList = this.usuarios.grupos[1].
+  }
+
+  reportErrorModal() {
+    let reportErrorModal = this.modalCtrl.create(ReportError);
+    reportErrorModal.present();
   }
 
   getItems(ev: any) {

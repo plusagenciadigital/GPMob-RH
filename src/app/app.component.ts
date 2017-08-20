@@ -14,7 +14,6 @@ import { DecreesPage } from '../pages/profile/decrees/decrees';
 import { DailyPage } from '../pages/profile/daily/daily';
 import { HomePage } from '../pages/home/home';
 import { AuthPage } from '../pages/auth/login';
-import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,22 +27,6 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Dashboard',          component: HomePage },
-      { title: 'Meu cadastro',       component: ProfilePage },
-      { title: 'Editar Dependentes', component: DependentsPage },
-      { title: 'Dependentes',        component: DependentsListPage },
-      { title: 'Portarias',          component: OrdinancesPage },
-      { title: 'Averbações',         component: EndorsementsPage },
-      { title: 'Lotação',            component: StockingPage },
-      { title: 'Licenças',           component: LicensesPage },
-      { title: 'Decretos',           component: DecreesPage },
-      { title: 'Diárias',            component: DailyPage },
-      { title: 'List',               component: ListPage }
-    ];
-
   }
 
   initializeApp() {

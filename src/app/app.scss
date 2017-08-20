@@ -33,3 +33,39 @@ a:focus {
     color: #fff;
   }
 }
+
+.progress-state {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11px;
+  text-align: left;
+  color: #777;
+
+  strong {
+    color: #0d377f;
+  }
+}
+.progress {
+  position: relative;
+  background: #eaeaea;
+  width: 100%;
+  height: 10px;
+  margin-bottom: 20px;
+
+  > div {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #950008;
+    background: -moz-linear-gradient(left,  #0d377f 0%, #950008 100%);
+    background: -webkit-linear-gradient(left,  #0d377f 0%,#950008 100%);
+    background: linear-gradient(to right,  #0d377f 0%,#950008 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#950008', endColorstr='#0d377f',GradientType=1 );
+  }
+}
+
+.btn--state-report {
+  position: relative;
+  top: -8px;
+  float: right;
+}

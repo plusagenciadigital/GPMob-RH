@@ -1,14 +1,5 @@
 <ion-header>
   <ion-navbar class="toolbar-theme">
-    <ion-buttons start>
-      <button ion-button>
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
-    <!-- <button ion-button menuToggle>
-      <ion-icon name="arrow-back"></ion-icon>
-    </button> -->
-
     <ion-title>Lotação</ion-title>
 
     <ion-buttons end>
@@ -25,7 +16,7 @@
   <ion-card *ngFor="let stocking of stockingList" #item>
     <ion-card-header>
       {{stocking.dataInclusao | date: 'dd/MM/yyyy'}}
-      <button ion-button color="danger" small>
+      <button ion-button color="danger" small class="btn--state-report" (click)="reportErrorModal()">
         <ion-icon name="alert"></ion-icon>
       </button>
     </ion-card-header>

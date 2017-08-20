@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
+import { ModalController } from 'ionic-angular';
+import { ReportError } from '../../modals/report';
 
 @Component({
   selector: 'decrees',
-  templateUrl: 'decrees.html'
+  templateUrl: 'decrees.html',
+  entryComponents: [ ReportError ]
 })
 export class DecreesPage {
   private usuario: User;
   decreesList;
 
-  constructor(private auth: AuthServiceProvider) {
+  constructor(private auth: AuthServiceProvider, public modalCtrl: ModalController) {
     this.usuario = this.auth.getUserInfo();
     this.initializeItems();
   }
@@ -17,6 +20,11 @@ export class DecreesPage {
   initializeItems() {
     var decretos = this.usuario.dados.grupos[3].dados;
     this.decreesList = decretos;
+  }
+
+  reportErrorModal() {
+    let reportErrorModal = this.modalCtrl.create(ReportError);
+    reportErrorModal.present();
   }
 
   getItems(ev: any) {

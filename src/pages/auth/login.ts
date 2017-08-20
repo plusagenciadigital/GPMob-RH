@@ -66,11 +66,11 @@ export class AuthPage {
 
   appInitialized() {
     setTimeout(() => {
-      console.log('aehoo');
-      var loader = document.getElementsByClassName('login')[0];
-      console.log(loader);
-      loader.classList.add('in');
-    }, 5660);
+      var loader = document.getElementsByClassName('login');
+      if(loader.length === 1) {
+        loader[0].classList.add('in');
+      }
+    }, 3000);
   }
 
 }

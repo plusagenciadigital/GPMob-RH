@@ -1,9 +1,8 @@
-import { Component, Injectable, ViewChild } from '@angular/core';
-import { App, AlertController, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Injectable } from '@angular/core';
+import { App, AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 
 // Dados do usuário
 export class User {
@@ -18,7 +17,7 @@ export class User {
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
-	public url_autorizacao: string;	
+	public url_autorizacao: string;
 	public liberado: boolean;
 
 	constructor(login: string, liberado: boolean, id_autorizacao: number, url_autorizacao: string) {
@@ -40,13 +39,13 @@ export class AuthServiceProvider {
   	} else {
 	    // Solicite o token
 	    var headers = new Headers();
-	    headers.append("Content-Type", "application/json");	    
-	    let requestOptions = new RequestOptions({headers: headers});  
-	    		
+	    headers.append("Content-Type", "application/json");
+	    let requestOptions = new RequestOptions({headers: headers});
+
   		// Requisição para solicitação de acesso
   		return Observable.create(observer => {
-		 	// Host 
-		    var host = "http://hackathonapi.sefaz.al.gov.br/sfz-habilitacao-aplicativo-api/api/public/autorizacao-aplicativo/solicitar";		  	
+		 	// Host
+		    var host = "http://hackathonapi.sefaz.al.gov.br/sfz-habilitacao-aplicativo-api/api/public/autorizacao-aplicativo/solicitar";
 		  	var parametros = {
 		  		login: login, // desmistificando: parâmetro que vai pro post = parâmetro que vem do método.
 		  		nomeDispositivo: "PLUS-GPMOB",
@@ -56,7 +55,7 @@ export class AuthServiceProvider {
 			this.http.post(host, parametros, requestOptions)
 			    .map(res => res.json())
 			    .subscribe(
-			      data => {		
+			      data => {
 			      	// 200 OK - {idAutorizacao: number, urlAutorizacao: string}
 			      	this.currentUser = new User(login, false, data.idAutorizacao, data.urlAutorizacao);
 		  			observer.next(true);
@@ -76,13 +75,13 @@ export class AuthServiceProvider {
   		// Requisição para token de autorização
   		// Neste ponto o usuário já foi localizado no sistema pelo seu login =)
   		return Observable.create(observer => {
-		 	// Host 
+		 	// Host
 		    var headers = new Headers();
-		    headers.append("Content-Type", "application/json");	    
-		    let requestOptions = new RequestOptions({headers: headers}); 
-		    let http: Http;
+		    headers.append("Content-Type", "application/json");
+		    let requestOptions = new RequestOptions({headers: headers});
+		    // let http: Http;
 
-		    var host = "http://hackathonapi.sefaz.al.gov.br/api/public/autenticar";		  	
+		    var host = "http://hackathonapi.sefaz.al.gov.br/api/public/autenticar";
 		  	var parametros = {
 		  		login: this.currentUser.login,
 		  		idAutorizacao: this.currentUser.id_autorizacao,
@@ -93,11 +92,11 @@ export class AuthServiceProvider {
 			this.http.post(host, parametros, requestOptions)
 			    .map(res => res.json())
 			    .subscribe(
-			      data => {		
+			      data => {
 			      	// 200 OK
 			      		this.currentUser.liberado = true;
 			      		this.currentUser.token = data.id_token;
-			      		avancar = true;	    
+			      		avancar = true;
 
 			      		// Já pode pegar as informações do funcionário logado
 			      		this.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/fichaFuncional")
@@ -115,10 +114,10 @@ export class AuthServiceProvider {
 			      }
 			 );
 		  	observer.next(avancar);
-		  	observer.complete();			      		
+		  	observer.complete();
 
-  		});		
-  }    
+  		});
+  }
 
   public getUserInfo(): User {
   	if (this.currentUser && this.currentUser.liberado) {
@@ -139,10 +138,10 @@ export class AuthServiceProvider {
   // Padrão para fazer requisições para as API's
   public getUserApiRequest(host, method = "get", parametros = {}) {
 	var headers = new Headers();
-	headers.append("Content-Type", "application/json");	    
-	headers.append("Authorization", "Bearer " + this.currentUser.token);	    
-	let requestOptions = new RequestOptions({headers: headers});  
-	    		
+	headers.append("Content-Type", "application/json");
+	headers.append("Authorization", "Bearer " + this.currentUser.token);
+	let requestOptions = new RequestOptions({headers: headers});
+
   		// Requisição para solicitação de acesso
   	var req: any;
   	return Observable.create(observer => {
@@ -151,11 +150,11 @@ export class AuthServiceProvider {
   		} else {
   			req = this.http.post(host, parametros, requestOptions);
   		}
-		
+
 		// Requisição padrão
 		req.map(res => res.json())
 		.subscribe(
-			data => {		
+			data => {
 				// 20x
 			    observer.next(data);
 			    observer.complete();
@@ -164,7 +163,7 @@ export class AuthServiceProvider {
 			    this.erro(err.mensagem);
 			}
 		);
-	});		  	
+	});
   }
 
   // Constructor do AuthServiceProvider
@@ -178,11 +177,11 @@ export class AuthServiceProvider {
       subTitle: mensagem,
       buttons: ['OK']
     });
-    alert.present();      
+    alert.present();
   }
 
   navegar(destino, parametros = {}) {
-	this.app.getRootNav().setRoot(destino, parametros);  	
+	this.app.getRootNav().setRoot(destino, parametros);
   }
 
   public logout() {
@@ -190,10 +189,9 @@ export class AuthServiceProvider {
 	  window.localStorage.clear();
       this.currentUser = null;
       observer.next(true);
-      observer.complete();      
+      observer.complete();
     });
    }
-
 
   public organizarRelacoes() {
   	this.currentUser.averbacoes = Array();
@@ -226,6 +224,5 @@ export class AuthServiceProvider {
 
   	console.log(this.currentUser.averbacoes);
   }   	
-
 
 }
