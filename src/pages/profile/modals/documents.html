@@ -14,23 +14,23 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Identidade</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.documentos['Identidade']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>CPF</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.documentos['CPF']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>PIS/PASEP</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.documentos['PIS/PASEP']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Título de eleitor</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.documentos['Título de Eleitor']}}"></ion-input>
     </ion-item>
   </ion-list>
 
   <div padding>
-    <button ion-button full>Solicitar</button>
+    <button ion-button full (click)="uploadModal()">Solicitar alterações</button>
   </div>
 </ion-content>

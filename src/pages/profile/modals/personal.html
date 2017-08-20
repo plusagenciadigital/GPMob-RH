@@ -13,30 +13,24 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      {{dados.dadosPessoais['Data de Nascimento']}}
-    </ion-item>
-    <ion-item>
       <ion-label floating>Nome completo</ion-label>
       <ion-input type="text" name="nome" [(ngModel)]="alterarPerfil.nome"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data de nascimento</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" value="01/01/2017"></ion-datetime>
+      <ion-input type="text" value="{{dados.dadosPessoais['Data de Nascimento']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Nome do pai</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosPessoais['Nome do Pai']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Nome do mãe</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosPessoais['Nome da Mãe']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Estado civil</ion-label>
-      <ion-select value="">
-        <ion-option>Solteiro</ion-option>
-        <ion-option>Casado</ion-option>
-      </ion-select>
+      <ion-input type="text" value="{{dados.dadosPessoais['Estado Civil']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Endereço</ion-label>
@@ -49,6 +43,6 @@
   </ion-list>
 
   <div padding>
-    <button ion-button full (click)="updateProfile()">Solicitar</button>
+    <button ion-button full (click)="uploadProfile()">Solicitar alterações</button>
   </div>
 </ion-content>

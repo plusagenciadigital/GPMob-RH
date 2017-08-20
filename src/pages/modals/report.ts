@@ -22,7 +22,6 @@ export class ReportError {
       closeButtonText: 'Fechar'
     });
 
-
     loader.present();
 
     setTimeout(() => {

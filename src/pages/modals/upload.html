@@ -12,15 +12,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>  
-      <ion-img [src]="base64File" *ngIf="base64File"></ion-img>    
+    <ion-item>
+      <ion-img [src]="base64File" *ngIf="base64File"></ion-img>
     </ion-item>
-    <!-- <ion-item>
-      <button ion-button icon-left full color="danger"><ion-icon name="attach"></ion-icon> Inserir anexo</button>
-    </ion-item> -->
   </ion-list>
 
   <div padding>
-    <button ion-button full (click)="sendFile()">Solicitar</button>
+    <button ion-button full (click)="sendFile()">Solicitar alterações</button>
   </div>
 </ion-content>

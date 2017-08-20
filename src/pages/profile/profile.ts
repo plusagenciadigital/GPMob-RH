@@ -23,11 +23,11 @@ export class ProfilePage {
     profilePersonal.present();
   }
   profileModalJobs() {
-    let profileJobs = this.modalCtrl.create(ProfileJobs);
+    let profileJobs = this.modalCtrl.create(ProfileJobs, {dados: this.usuario});
     profileJobs.present();
   }
   profileModalDocuments() {
-    let profileDocuments = this.modalCtrl.create(ProfileDocuments);
+    let profileDocuments = this.modalCtrl.create(ProfileDocuments, {dados: this.usuario});
     profileDocuments.present();
   }
 

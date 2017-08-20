@@ -14,11 +14,11 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Data de nomeação</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+      <ion-input type="text" value="{{dados.dadosProfissionais['Data de Posse']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data da posse</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
+      <ion-input type="text" value="{{dados.dadosProfissionais['Data de Posse']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Matrícula</ion-label>
@@ -26,7 +26,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Número da ordem</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosProfissionais['Número de Ordem']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Lotação</ion-label>
@@ -34,11 +34,11 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Vínculo</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosProfissionais['Vínculo']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Cargo Efetivo</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" value="{{dados.dadosProfissionais['Cargo Efetivo']}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Cargo Comissionado</ion-label>
@@ -58,6 +58,6 @@
   </ion-list>
 
   <div padding>
-    <button ion-button full>Solicitar</button>
+    <button ion-button full (click)="uploadModal()">Solicitar alterações</button>
   </div>
 </ion-content>
