@@ -69,7 +69,7 @@ export class AuthPage {
     setTimeout(() => {
       var loader = document.getElementsByClassName('login')[0];
       loader.classList.add('in');
-    }, 5660);
+    }, 3000);
   }
 
 }
