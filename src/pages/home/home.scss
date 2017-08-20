@@ -1,7 +1,7 @@
 // .dashboard {}
 
 .dashboard-avatar {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-align: center;
 
   .thumb {
@@ -49,5 +49,22 @@
   }
   .title {
     font-size: 12px;
+  }
+
+  .alert {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 10px;
+      height: 10px;
+      background: #c30505;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+    }
   }
 }

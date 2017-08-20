@@ -23,8 +23,14 @@
 
   <ion-grid class="dashboard-items">
     <ion-row>
+      <ion-col col-12>
+        <span class="progress-state">Seu perfil: <strong>Nível intermediário</strong></span>
+        <div class="progress"><div style="width: 76%"></div></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-6>
-        <a href="javascript:;" class="flex">
+        <a href="javascript:;" class="flex alert">
           <div class="item">
             <ion-icon name="contact"></ion-icon>
             <span class="title">Meu cadastro</span>
@@ -32,7 +38,7 @@
         </a>
       </ion-col>
       <ion-col col-6>
-        <a (click)="goToDependents()" class="flex">
+        <a (click)="goToDependents()" class="flex alert">
           <div class="item">
             <ion-icon name="people"></ion-icon>
             <span class="title">Dependentes</span>
