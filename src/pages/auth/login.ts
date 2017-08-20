@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LiberacaoPage } from '../../pages/liberacao/liberacao';
+import { HomePage } from '../../pages/home/home';
 
 @Component({
   selector: 'login',
