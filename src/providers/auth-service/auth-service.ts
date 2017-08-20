@@ -5,16 +5,12 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 
-
 // Dados do usuário
 export class User {
+	public dados: Object;
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
-	public nome: string;
-	public dependentes: Object;
-	public grupos: Object;
-	public cargo: string;
 	public url_autorizacao: string;	
 	public liberado: boolean;
 
@@ -98,11 +94,11 @@ export class AuthServiceProvider {
 			      		// Já pode pegar as informações do funcionário logado
 			      		this.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/fichaFuncional")
 						.subscribe(dadosUsuario => {
-							this.currentUser.nome = dadosUsuario.nomeFuncionario;
-							this.currentUser.cargo = "Teste";
-							this.currentUser.dependentes = dadosUsuario.dependentes;
-							this.currentUser.grupos = dadosUsuario.grupos;
+							this.currentUser.dados = dadosUsuario;
 						});
+
+						// Armazenamento em local storage para persistência
+			      		window.localStorage.setItem("user", JSON.stringify(this.currentUser));
 			      },
 			      err => {
 			      	// Deu algum problema
@@ -117,6 +113,15 @@ export class AuthServiceProvider {
 
   public getUserInfo(): User {
   	return this.currentUser;
+  }
+
+  public getLocalUser() {
+  	var localUser = window.localStorage.getItem("user");
+  	if (localUser) {
+  		this.currentUser = JSON.parse(localUser);
+  		return true;
+  	}
+  	return false;
   }
 
   // Padrão para fazer requisições para as API's
@@ -149,8 +154,9 @@ export class AuthServiceProvider {
 	});		  	
   }
 
+  // Constructor do AuthServiceProvider
   constructor(public http: Http, public alertCtrl: AlertController, public app: App) {
-    //console.log('Hello AuthServiceProvider Provider');
+
   }
 
   erro(mensagem) {
@@ -168,9 +174,10 @@ export class AuthServiceProvider {
 
   public logout() {
     return Observable.create(observer => {
+	  window.localStorage.clear();
       this.currentUser = null;
       observer.next(true);
-      observer.complete();
+      observer.complete();      
     });
    }	
 

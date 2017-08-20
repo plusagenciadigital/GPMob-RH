@@ -18,12 +18,15 @@ export class AuthPage {
   	private alertCtrl: AlertController,
 	  private loadingCtrl: LoadingController,
   	public navParams: NavParams) {
+      // Se já pegou o usuário logado
+      if (this.auth.getLocalUser()) {
+        this.navCtrl.setRoot(HomePage);        
+      }
   }
 
   public efetuarLogin() {
     this.showLoading();
     this.auth.efetuarLogin(this.login, this.loading).subscribe(loginEfetuado => {
-      console.log("Chamando o login");
       if (loginEfetuado) {
         // Deu tudo certo com o login: leva pra Home
         this.auth.getAuthorization().subscribe(autorizacaoConcedida => {

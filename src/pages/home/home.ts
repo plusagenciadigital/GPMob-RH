@@ -12,6 +12,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private auth: AuthServiceProvider) {
   	this.usuario = this.auth.getUserInfo();  
+    console.log(this.usuario);
   }
 
   public logout() {
