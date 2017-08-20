@@ -7,7 +7,7 @@ import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 
 // Dados do usuário
 export class User {
-	public dados: Object;
+	public dados: any;
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
