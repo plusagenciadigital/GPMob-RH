@@ -19,7 +19,7 @@ export class ProfilePage {
  }
 
   profileModalPersonal() {
-    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario});
+    let profilePersonal = this.modalCtrl.create(ProfilePersonal, {dados: this.usuario, auth: this.auth});
     profilePersonal.present();
   }
   profileModalJobs() {

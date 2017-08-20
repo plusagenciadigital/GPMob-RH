@@ -8,14 +8,17 @@ import { UploadModal } from '../../modals/upload';
 })
 export class ProfilePersonal {
   public dados;
+  public auth;
+  public alterarPerfil: any;
 
-  public alterarPerfil: Object = {nome: '', endereco: ''};
   constructor(public viewCtrl: ViewController, public modalCtrl: ModalController, public params: NavParams) {
-    this.dados = params.get('dados')
+    this.dados = params.get('dados');
+    this.auth = params.get('auth');
+    this.alterarPerfil = {nome: this.dados.dadosPessoais["Nome"]};
   }
 
   uploadModal(id) {
-    let uploadModal = this.modalCtrl.create(UploadModal, {idParaAnexo: id});
+    let uploadModal = this.modalCtrl.create(UploadModal, {idParaAnexo: id, auth: this.auth});
     uploadModal.present();
   }
 
