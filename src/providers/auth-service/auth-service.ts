@@ -218,11 +218,17 @@ export class AuthServiceProvider {
   				this.currentUser.cadastro.push(dadoAtual);  				
   			} else if (grupoAtual.descricao == "Portarias") {
   				// Tratar o tipo portarias
+  				var nomeTipo = dadoAtual.tipoDadoFichaFuncional.nomeTipo;
+  				console.log(this.currentUser.portarias[nomeTipo]);
+  				if (this.currentUser.portarias[nomeTipo] == undefined) {
+  					this.currentUser.portarias[nomeTipo] = Array();
+  				}
+  				this.currentUser.portarias[nomeTipo].push(dadoAtual);
   			}
   		}	
   	}
 
-  	console.log(this.currentUser.averbacoes);
+  	console.log(this.currentUser.portarias);
   }   	
 
 }
