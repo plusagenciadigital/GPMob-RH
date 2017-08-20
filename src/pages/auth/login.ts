@@ -67,9 +67,7 @@ export class AuthPage {
 
   appInitialized() {
     setTimeout(() => {
-      console.log('aehoo');
       var loader = document.getElementsByClassName('login')[0];
-      console.log(loader);
       loader.classList.add('in');
     }, 5660);
   }
