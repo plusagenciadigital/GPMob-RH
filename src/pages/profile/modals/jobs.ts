@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'profile-jobs',
   templateUrl: './jobs.html'
 })
 export class ProfileJobs {
-  constructor(public viewCtrl: ViewController) {}
+  public dados;
+
+  constructor(public viewCtrl: ViewController, public params: NavParams) {
+    this.dados = params.get('dados')
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();

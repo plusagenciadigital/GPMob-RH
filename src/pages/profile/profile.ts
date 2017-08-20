@@ -16,9 +16,9 @@ export class ProfilePage {
 
  constructor(public modalCtrl: ModalController, public alertCtrl: AlertController, private auth: AuthServiceProvider) {
     this.usuario = this.auth.getUserInfo();
-    //console.log(this.usuario.dadosPessoais);
-    //console.log(this.usuario.dadosProfissionais);
-    //console.log(this.usuario.documentos);
+    // console.log(this.usuario.dadosPessoais);
+    // console.log(this.usuario.dadosProfissionais);
+    // console.log(this.usuario.documentos);
  }
 
   profileModalPersonal() {
@@ -26,11 +26,11 @@ export class ProfilePage {
     profilePersonal.present();
   }
   profileModalJobs() {
-    let profileJobs = this.modalCtrl.create(ProfileJobs);
+    let profileJobs = this.modalCtrl.create(ProfileJobs, {dados: this.usuario});
     profileJobs.present();
   }
   profileModalDocuments() {
-    let profileDocuments = this.modalCtrl.create(ProfileDocuments);
+    let profileDocuments = this.modalCtrl.create(ProfileDocuments, {dados: this.usuario});
     profileDocuments.present();
   }
 
