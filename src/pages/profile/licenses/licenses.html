@@ -22,7 +22,7 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-card *ngFor="let licence of licencesList" #item>
+  <ion-card *ngFor="let licence of licensesList" #item>
     <ion-card-header>
       {{licence.dataInclusao | date: 'dd/MM/yyyy'}}
       <button ion-button color="danger" small>

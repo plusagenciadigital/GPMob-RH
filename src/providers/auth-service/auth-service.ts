@@ -8,6 +8,13 @@ import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 // Dados do usuário
 export class User {
 	public dados: any;
+	public cadastro: any;
+	public licencas: any;
+	public averbacoes: any;
+	public decretos: any;
+	public diarias: any;
+	public portarias: any;
+	public lotacao: any;
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
@@ -20,6 +27,7 @@ export class User {
 		this.id_autorizacao = id_autorizacao;
 		this.url_autorizacao = url_autorizacao;
 	}
+	
 }
 
 @Injectable()
@@ -95,6 +103,7 @@ export class AuthServiceProvider {
 			      		this.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/fichaFuncional")
 						.subscribe(dadosUsuario => {
 							this.currentUser.dados = dadosUsuario;
+							this.organizarRelacoes();
 						});
 
 						// Armazenamento em local storage para persistência
@@ -112,6 +121,9 @@ export class AuthServiceProvider {
   }    
 
   public getUserInfo(): User {
+  	if (this.currentUser && this.currentUser.liberado) {
+	  	this.organizarRelacoes();
+  	}
   	return this.currentUser;
   }
 
@@ -180,6 +192,40 @@ export class AuthServiceProvider {
       observer.next(true);
       observer.complete();      
     });
-   }	
+   }
+
+
+  public organizarRelacoes() {
+  	this.currentUser.averbacoes = Array();
+  	this.currentUser.decretos = Array();
+  	this.currentUser.portarias = Array();
+  	this.currentUser.licencas = Array();
+  	this.currentUser.diarias = Array();
+  	this.currentUser.lotacao = Array();
+  	this.currentUser.cadastro = Array();
+  	// Separar os grupos: 
+  	var dados = this.currentUser.dados;
+  	var grupos = dados.grupos;
+  	for(var i in grupos) {
+  		var grupoAtual = grupos[i];
+  		var dadosGrupo = grupoAtual.dados;
+  		for(var dadoIndex in dadosGrupo) {
+  			var dadoAtual = dadosGrupo[i];
+  			// Quem é quem
+  			if (grupoAtual.descricao == "Averbações") {
+  				this.currentUser.averbacoes.push(dadoAtual);
+  			} else if (grupoAtual.descricao == "Decretos") {
+  				this.currentUser.decretos.push(dadoAtual);  				
+  			} else if (grupoAtual.descricao == "Cadastro") {
+  				this.currentUser.cadastro.push(dadoAtual);  				
+  			} else if (grupoAtual.descricao == "Portarias") {
+  				// Tratar o tipo portarias
+  			}
+  		}	
+  	}
+
+  	console.log(this.currentUser.averbacoes);
+  }   	
+
 
 }
