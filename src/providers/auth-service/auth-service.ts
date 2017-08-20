@@ -195,12 +195,13 @@ export class AuthServiceProvider {
 
   public organizarRelacoes() {
   	this.currentUser.averbacoes = Array();
-  	this.currentUser.decretos = Array();
   	this.currentUser.portarias = Array();
   	this.currentUser.licencas = Array();
   	this.currentUser.diarias = Array();
   	this.currentUser.lotacao = Array();
   	this.currentUser.cadastro = Array();
+  	this.currentUser.decretos = Array();
+
   	// Separar os grupos: 
   	var dados = this.currentUser.dados;
   	var grupos = dados.grupos;
@@ -208,7 +209,7 @@ export class AuthServiceProvider {
   		var grupoAtual = grupos[i];
   		var dadosGrupo = grupoAtual.dados;
   		for(var dadoIndex in dadosGrupo) {
-  			var dadoAtual = dadosGrupo[i];
+  			var dadoAtual = dadosGrupo[dadoIndex];
   			// Quem é quem
   			if (grupoAtual.descricao == "Averbações") {
   				this.currentUser.averbacoes.push(dadoAtual);
@@ -226,7 +227,6 @@ export class AuthServiceProvider {
   			}
   		}	
   	}
-
   }   	
 
 }

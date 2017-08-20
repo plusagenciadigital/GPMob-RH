@@ -18,8 +18,7 @@ export class DecreesPage {
   }
 
   initializeItems() {
-    var decretos = this.usuario.dados.grupos[3].dados;
-    this.decreesList = decretos;
+    this.decreesList = this.usuario.decretos;
   }
 
   reportErrorModal() {
