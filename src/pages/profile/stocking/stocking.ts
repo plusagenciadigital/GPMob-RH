@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ordinances',
-  templateUrl: 'ordinances.html'
+  selector: 'stocking',
+  templateUrl: 'stocking.html'
 })
-export class OrdinancesPage {
-  ordinancesList;
+export class StockingPage {
+  stockingList;
 
   constructor() {
     this.initializeItems();
   }
 
   initializeItems() {
-    this.ordinancesList = [{
+    this.stockingList = [{
       descricao: 'Item 1 - O CARGO GTR-5 FOI EXTINTO PELA LEI DELEGADA N° 44, DE 08/04/2011, PUBLICADA NO DOE DE 09/04/2011. CONFORME Decreto n° 11.824, de 15/04/2011, O Governador do Estado de Alagoas, no uso das atribuições que lhe confere o inciso XIV do art. 107 da Constituição Estadual, RESOLVE nomear Margarida Maria Ferreira Fontan, portadora do CPF n° 208.173.474-53',
       dataInclusao: 1060041600000
     },
@@ -36,8 +36,8 @@ export class OrdinancesPage {
     let val = ev.target.value;
 
     if (val && val.trim() != '') {
-      console.log(this.ordinancesList);
-      this.ordinancesList = this.ordinancesList.filter((item) => {
+      console.log(this.stockingList);
+      this.stockingList = this.stockingList.filter((item) => {
         return (item.descricao.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }

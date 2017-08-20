@@ -9,7 +9,7 @@
       <ion-icon name="arrow-back"></ion-icon>
     </button> -->
 
-    <ion-title>Portarias</ion-title>
+    <ion-title>Decretos</ion-title>
 
     <ion-buttons end>
       <button ion-button>
@@ -22,15 +22,15 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-card *ngFor="let ordinance of ordinancesList" #item>
+  <ion-card *ngFor="let decrees of decreesList" #item>
     <ion-card-header>
-      {{ordinance.dataInclusao | date: 'dd/MM/yyyy'}}
+      {{decrees.dataInclusao | date: 'dd/MM/yyyy'}}
       <button ion-button color="danger" small>
         <ion-icon name="alert"></ion-icon>
       </button>
     </ion-card-header>
     <ion-card-content>
-      {{ordinance.descricao}}
+      {{decrees.descricao}}
     </ion-card-content>
   </ion-card>
 

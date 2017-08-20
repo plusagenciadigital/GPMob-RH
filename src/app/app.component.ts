@@ -7,6 +7,11 @@ import { ProfilePage } from '../pages/profile/profile';
 import { DependentsPage } from '../pages/profile/dependents/dependents';
 import { DependentsListPage } from '../pages/profile/dependents/dependents-list';
 import { OrdinancesPage } from '../pages/profile/ordinances/ordinances';
+import { EndorsementsPage } from '../pages/profile/endorsements/endorsements';
+import { StockingPage } from '../pages/profile/stocking/stocking';
+import { LicencesPage } from '../pages/profile/licences/licences';
+import { DecreesPage } from '../pages/profile/decrees/decrees';
+import { DailyPage } from '../pages/profile/daily/daily';
 import { HomePage } from '../pages/home/home';
 import { AuthPage } from '../pages/auth/login';
 import { ListPage } from '../pages/list/list';
@@ -37,6 +42,11 @@ export class MyApp {
       { title: 'Editar Dependentes', component: DependentsPage },
       { title: 'Dependentes',        component: DependentsListPage },
       { title: 'Portarias',          component: OrdinancesPage },
+      { title: 'Averbações',         component: EndorsementsPage },
+      { title: 'Lotação',            component: StockingPage },
+      { title: 'Licenças',           component: LicencesPage },
+      { title: 'Decretos',           component: DecreesPage },
+      { title: 'Diárias',            component: DailyPage },
       { title: 'List',               component: ListPage }
     ];
 

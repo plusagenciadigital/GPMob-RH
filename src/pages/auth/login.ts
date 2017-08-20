@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../../pages/home/home';
 import { LiberacaoPage } from '../../pages/liberacao/liberacao';
 
 @Component({
@@ -14,8 +13,8 @@ export class AuthPage {
   public login: string;
 
   constructor(
-  	public navCtrl: NavController, 
-    private auth: AuthServiceProvider, 
+  	public navCtrl: NavController,
+    private auth: AuthServiceProvider,
   	private alertCtrl: AlertController,
 	  private loadingCtrl: LoadingController,
   	public navParams: NavParams) {
@@ -26,7 +25,7 @@ export class AuthPage {
     this.auth.efetuarLogin(this.login, this.loading).subscribe(loginEfetuado => {
       console.log("Chamando o login");
       if (loginEfetuado) {
-        // Deu tudo certo com o login: leva pra Home      
+        // Deu tudo certo com o login: leva pra Home
         this.auth.getAuthorization().subscribe(autorizacaoConcedida => {
           if (autorizacaoConcedida) {
           } else {
@@ -51,13 +50,13 @@ export class AuthPage {
     this.loading.present();
   }
 
-  showError(text) { 
+  showError(text) {
     let alert = this.alertCtrl.create({
       title: 'Erro',
       subTitle: text,
       buttons: ['OK']
     });
     alert.present(prompt);
-  }  
+  }
 
 }

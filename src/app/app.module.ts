@@ -12,6 +12,11 @@ import { ProfileDocuments } from '../pages/profile/modals/documents';
 import { DependentsPage } from '../pages/profile/dependents/dependents';
 import { DependentsListPage } from '../pages/profile/dependents/dependents-list';
 import { OrdinancesPage } from '../pages/profile/ordinances/ordinances';
+import { EndorsementsPage } from '../pages/profile/endorsements/endorsements';
+import { StockingPage } from '../pages/profile/stocking/stocking';
+import { LicencesPage } from '../pages/profile/licences/licences';
+import { DecreesPage } from '../pages/profile/decrees/decrees';
+import { DailyPage } from '../pages/profile/daily/daily';
 import { HomePage } from '../pages/home/home';
 import { LiberacaoPage } from '../pages/liberacao/liberacao';
 import { ListPage } from '../pages/list/list';
@@ -32,6 +37,11 @@ import { IonicStorageModule } from '@ionic/storage';
     DependentsPage,
     DependentsListPage,
     OrdinancesPage,
+    EndorsementsPage,
+    StockingPage,
+    LicencesPage,
+    DecreesPage,
+    DailyPage,
     HomePage,
     LiberacaoPage,
     ListPage
@@ -40,7 +50,7 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()    
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,6 +63,11 @@ import { IonicStorageModule } from '@ionic/storage';
     DependentsPage,
     DependentsListPage,
     OrdinancesPage,
+    EndorsementsPage,
+    StockingPage,
+    LicencesPage,
+    DecreesPage,
+    DailyPage,
     HomePage,
     LiberacaoPage,
     ListPage
