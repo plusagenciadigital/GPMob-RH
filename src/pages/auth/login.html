@@ -1,20 +1,30 @@
-<ion-content class="login">
-  <div class="login-flex">
-    <div class="login-flex__content">
-      <img src="" alt="" class="login__logo">
-      <form (ngSubmit)="efetuarLogin()" #loginForm="ngForm">
-      <ion-list>
-        <ion-item>
-          <ion-label stacked>Código do servidor</ion-label>
-          <ion-input type="text" [(ngModel)]="login" name="login" value="24845800" required></ion-input>
-        </ion-item>
-      </ion-list>
+<ion-content class="login-wrapper">
+  <div class="loader">
+    <div class="loader-flex">
+      <div class="loader-flex__content">
+        <img src="assets/images/loader.gif" alt="" class="loader__logo">
+      </div>
+    </div>
+  </div>
+  <div class="login">
+    <div class="login-flex">
+      <div class="login-flex__content">
+        <img src="assets/images/logo.png" alt="" class="login__logo">
 
-      <button ion-button icon-start block>
-        <ion-icon name="log-in"></ion-icon>
-        Acessar
-      </button>
-     </form>
+        <form (ngSubmit)="efetuarLogin()" #loginForm="ngForm">
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>Código do servidor</ion-label>
+            <ion-input type="text" [(ngModel)]="login" name="login" value="24845800" required></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button icon-start block>
+          <ion-icon name="log-in"></ion-icon>
+          Acessar
+        </button>
+       </form>
+      </div>
     </div>
   </div>
 </ion-content>

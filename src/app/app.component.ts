@@ -22,13 +22,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = AuthPage; //HomePage
-
-  /*
-  AuthPage
-  HomePage
-  ProfilePage
-  */
+  rootPage: any = AuthPage;
 
   pages: Array<{title: string, component: any}>;
 

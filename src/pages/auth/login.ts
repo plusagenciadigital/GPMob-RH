@@ -19,9 +19,11 @@ export class AuthPage {
   	private alertCtrl: AlertController,
 	  private loadingCtrl: LoadingController,
   	public navParams: NavParams) {
+      this.appInitialized();
+
       // Se já pegou o usuário logado
       if (this.auth.getLocalUser()) {
-        this.navCtrl.setRoot(HomePage);        
+        this.navCtrl.setRoot(HomePage);
       }
   }
 
@@ -61,6 +63,15 @@ export class AuthPage {
       buttons: ['OK']
     });
     alert.present(prompt);
+  }
+
+  appInitialized() {
+    setTimeout(() => {
+      console.log('aehoo');
+      var loader = document.getElementsByClassName('login')[0];
+      console.log(loader);
+      loader.classList.add('in');
+    }, 5660);
   }
 
 }
