@@ -17,8 +17,8 @@
 <ion-content class="dashboard" padding>
   <section class="dashboard-avatar" *ngIf="usuario">
     <img src="assets/images/avatar.jpg" alt="" class="thumb">
-    <h1 class="name">{{ usuario.dados.nomeFuncionario }}</h1>
-    <h2 class="role">{{ usuario.dados.grupos[2].dados[10].descricao }}</h2>
+    <h1 class="name">{{ usuario.dadosPessoais["Nome"] }}</h1>
+    <h2 class="role">{{ usuario.dadosProfissionais["Cargo Efetivo"] }}</h2>
   </section>
 
   <ion-grid class="dashboard-items">
