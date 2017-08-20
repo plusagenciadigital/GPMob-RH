@@ -4,6 +4,11 @@ import { User, AuthServiceProvider } from '../../providers/auth-service/auth-ser
 import { AuthPage } from '../auth/login';
 import { OrdinancesPage } from '../profile/ordinances/ordinances';
 import { DependentsListPage } from '../profile/dependents/dependents-list';
+import { EndorsementsPage } from '../profile/endorsements/endorsements';
+import { StockingPage } from '../profile/stocking/stocking';
+import { LicensesPage } from '../profile/licenses/licenses';
+import { DecreesPage } from '../profile/decrees/decrees';
+import { DailyPage } from '../profile/daily/daily';
 
 @Component({
   selector: 'page-home',
@@ -30,4 +35,25 @@ export class HomePage {
   goToDependents() {
     this.navCtrl.push(DependentsListPage);
   }  
+
+  goToEndorsements() {
+    this.navCtrl.push(EndorsementsPage);
+  }    
+
+  goToStocking() {
+    this.navCtrl.push(StockingPage);
+  }     
+
+  goToLicenses() {
+    this.navCtrl.push(LicensesPage);
+  }     
+
+  goToDecrees() {
+    this.navCtrl.push(DecreesPage);
+  }         
+
+  goToDaily() {
+    this.navCtrl.push(DailyPage);
+  }         
+
 }

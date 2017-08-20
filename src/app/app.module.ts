@@ -14,7 +14,7 @@ import { DependentsListPage } from '../pages/profile/dependents/dependents-list'
 import { OrdinancesPage } from '../pages/profile/ordinances/ordinances';
 import { EndorsementsPage } from '../pages/profile/endorsements/endorsements';
 import { StockingPage } from '../pages/profile/stocking/stocking';
-import { LicencesPage } from '../pages/profile/licences/licences';
+import { LicensesPage } from '../pages/profile/licenses/licenses';
 import { DecreesPage } from '../pages/profile/decrees/decrees';
 import { DailyPage } from '../pages/profile/daily/daily';
 import { HomePage } from '../pages/home/home';
@@ -39,7 +39,7 @@ import { IonicStorageModule } from '@ionic/storage';
     OrdinancesPage,
     EndorsementsPage,
     StockingPage,
-    LicencesPage,
+    LicensesPage,
     DecreesPage,
     DailyPage,
     HomePage,
@@ -64,7 +64,7 @@ import { IonicStorageModule } from '@ionic/storage';
     OrdinancesPage,
     EndorsementsPage,
     StockingPage,
-    LicencesPage,
+    LicensesPage,
     DecreesPage,
     DailyPage,
     HomePage,

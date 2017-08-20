@@ -1,50 +1,24 @@
 import { Component } from '@angular/core';
 import { ItemSliding } from 'ionic-angular';
+import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
+
 
 @Component({
   selector: 'dependents-list',
   templateUrl: 'dependents-list.html'
 })
 export class DependentsListPage {
+  private usuario: User;
   dependentsList;
 
-  constructor() {
+  constructor(private auth: AuthServiceProvider) {
+    this.usuario = this.auth.getUserInfo();
     this.initializeItems();
   }
 
   initializeItems() {
-    this.dependentsList = [{
-      nome: 'Maria Clara',
-      tipoParentesco: {
-        codigo: 3,
-        nome: 'Filho(a)'
-      },
-      dataNascimento: 1060041600000
-    },
-    {
-      nome: 'Beatrice',
-      tipoParentesco: {
-        codigo: 3,
-        nome: 'Filho(a)'
-      },
-      dataNascimento: 1159660800000
-    },
-    {
-      nome: 'Joana Silva Marina',
-      tipoParentesco: {
-        codigo: 2,
-        nome: 'Mãe'
-      },
-      dataNascimento: 1486080000000
-    },
-    {
-      nome: 'José Marcelo',
-      tipoParentesco: {
-        codigo: 1,
-        nome: 'Pai'
-      },
-      dataNascimento: 1159660800000
-    }];
+    var dependentes = this.usuario.dados.dependentes;
+    this.dependentsList = dependentes; 
   }
 
   delete(item: ItemSliding) {
