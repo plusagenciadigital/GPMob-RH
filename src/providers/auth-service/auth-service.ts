@@ -14,6 +14,11 @@ export class User {
 	public diarias: any;
 	public portarias: any;
 	public lotacao: any;
+
+	public dadosPessoais: any;
+	public dadosProfissionais: any;
+	public documentos: any;
+
 	public login: string;	
 	public token: string;
 	public id_autorizacao: number;
@@ -205,6 +210,13 @@ export class AuthServiceProvider {
   	// Separar os grupos: 
   	var dados = this.currentUser.dados;
   	var grupos = dados.grupos;
+
+  	// Subgrupos de cadastro
+  	var tiposDadosPessoais = ["Nome", "Nome da Mãe", "Nome do Pai", "Estado Civil", "Data de Nascimento"];
+  	var tiposDadosProfissionais = ["Nomeação", "Número de Ordem", "Cargo Efetivo", "Lotação", "Data de Posse", "Vínculo", "Grau de Instrução"];
+  	var tiposDocumentos = ["Identidade", "CPF", "PIS/PASEP", "Título de Eleitor"];
+
+  	// Inicia o processamento dos grupos
   	for(var i in grupos) {
   		var grupoAtual = grupos[i];
   		var dadosGrupo = grupoAtual.dados;
@@ -216,6 +228,7 @@ export class AuthServiceProvider {
   			} else if (grupoAtual.descricao == "Decretos") {
   				this.currentUser.decretos.push(dadoAtual);  				
   			} else if (grupoAtual.descricao == "Cadastro") {
+  				// Salva todos os dados do cadastor
   				this.currentUser.cadastro.push(dadoAtual);  				
   			} else if (grupoAtual.descricao == "Portarias") {
   				// Tratar o tipo portarias
@@ -227,6 +240,28 @@ export class AuthServiceProvider {
   			}
   		}	
   	}
+
+
+  	// Agora, faz a segmentação do cadastro
+	this.currentUser.dadosPessoais = Array();
+	this.currentUser.dadosProfissionais = Array();
+	this.currentUser.documentos = Array();
+  	for(var cadastroIndex in this.currentUser.cadastro) {
+  		var cadastroAtual = this.currentUser.cadastro[cadastroIndex];
+  		var nomeTipo = cadastroAtual.tipoDadoFichaFuncional.nomeTipo;
+
+  		if (tiposDadosProfissionais.indexOf(nomeTipo) > -1) {
+  			this.currentUser.dadosProfissionais[nomeTipo] = cadastroAtual.descricao;
+  		} 
+
+  		if (tiposDadosPessoais.indexOf(nomeTipo) > -1) {
+  			this.currentUser.dadosPessoais[nomeTipo] = cadastroAtual.descricao;
+  		}
+
+  		if (tiposDocumentos.indexOf(nomeTipo) > -1) {
+  			this.currentUser.documentos[nomeTipo] = cadastroAtual.descricao;
+  		}  		  		
+  	}  	
   }   	
 
 }
