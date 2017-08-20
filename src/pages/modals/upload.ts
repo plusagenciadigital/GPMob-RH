@@ -7,7 +7,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   templateUrl: './upload.html'
 })
 export class UploadModal {
-<<<<<<< HEAD
   private idParaAnexo: number;
   public base64File: string;
   public auth;
@@ -43,8 +42,7 @@ export class UploadModal {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      this.base64Image = imageData;
-      console.log(base64Image);
+      this.base64File = imageData;
     }, (err) => {
       // Handle error
     });
@@ -69,7 +67,7 @@ export class UploadModal {
     this.auth.getUserApiRequest("http://hackathonapi.sefaz.al.gov.br/sfz_ficha_funcional_api/api/public/dadoFichaFuncional/anexo", "post", paramsAnexo)
     .subscribe(retorno => {
     	// Sucesso: requisição feita, anexo enviado
-	    this.viewCtrl.dismiss();    
+    	this.request();
     });
   }  
 }
