@@ -1,15 +1,36 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, LoadingController, ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'upload',
   templateUrl: './upload.html'
 })
 export class UploadModal {
-  constructor(public viewCtrl: ViewController) {}
+  constructor(
+    public viewCtrl: ViewController,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController
+  ) {}
 
   request() {
-    console.log('clicked!');
+    let loader = this.loadingCtrl.create({
+      content: "Enviando solicitacão..."
+    });
+    const toast = this.toastCtrl.create({
+      message: "Sua solicitação foi enviada com sucesso",
+      showCloseButton: true,
+      closeButtonText: 'Fechar'
+    });
+
+    loader.present();
+
+    setTimeout(() => {
+      loader.dismiss();
+    }, 1000)
+    setTimeout(() => {
+      this.viewCtrl.dismiss();
+      toast.present();
+    }, 1500);
   }
 
   dismiss() {
