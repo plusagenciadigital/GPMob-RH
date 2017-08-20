@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'upload',
@@ -9,7 +10,8 @@ export class UploadModal {
   constructor(
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private camera: Camera
   ) {}
 
   request() {
@@ -23,6 +25,22 @@ export class UploadModal {
     });
 
     loader.present();
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log(base64Image);
+    }, (err) => {
+      // Handle error
+    });
 
     setTimeout(() => {
       loader.dismiss();

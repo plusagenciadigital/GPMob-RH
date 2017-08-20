@@ -13,11 +13,11 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-input type="file" value=""></ion-input>
+      <ion-img [src]="base64File" *ngIf="base64File"></ion-img>
     </ion-item>
   </ion-list>
 
   <div padding>
-    <button ion-button full (click)="request()">Solicitar alterações</button>
+    <button ion-button full (click)="sendFile()">Solicitar alterações</button>
   </div>
 </ion-content>

@@ -2,6 +2,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { AuthPage } from '../pages/auth/login';
@@ -78,6 +79,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider
   ]
