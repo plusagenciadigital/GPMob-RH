@@ -16,7 +16,7 @@
   <ion-card *ngFor="let ordinance of ordinancesList" #item>
     <ion-card-header>
       {{ordinance.dataInclusao | date: 'dd/MM/yyyy'}}
-      <button ion-button color="danger" small>
+      <button ion-button color="danger" small class="btn--state-report">
         <ion-icon name="alert"></ion-icon>
       </button>
     </ion-card-header>

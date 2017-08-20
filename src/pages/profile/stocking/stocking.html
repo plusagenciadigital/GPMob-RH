@@ -16,7 +16,7 @@
   <ion-card *ngFor="let stocking of stockingList" #item>
     <ion-card-header>
       {{stocking.dataInclusao | date: 'dd/MM/yyyy'}}
-      <button ion-button color="danger" small>
+      <button ion-button color="danger" small class="btn--state-report">
         <ion-icon name="alert"></ion-icon>
       </button>
     </ion-card-header>
