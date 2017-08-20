@@ -165,7 +165,7 @@ export class AuthServiceProvider {
 			    observer.complete();
 			},
 			err => {
-			    this.erro(err.mensagem);
+			    this.erro("Houve um problema ao tentar completar sua solicitação.");
 			}
 		);
 	});
