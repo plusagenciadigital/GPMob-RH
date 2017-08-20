@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title><ion-icon name="alert"></ion-icon> Upload anexo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input type="file" value=""></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <button ion-button icon-left full color="danger"><ion-icon name="attach"></ion-icon> Inserir anexo</button>
+    </ion-item> -->
+  </ion-list>
+
+  <div padding>
+    <button ion-button full>Solicitar</button>
+  </div>
+</ion-content>
