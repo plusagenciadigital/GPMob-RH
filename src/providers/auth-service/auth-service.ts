@@ -132,11 +132,12 @@ export class AuthServiceProvider {
 	let requestOptions = new RequestOptions({headers: headers});  
 	    		
   		// Requisição para solicitação de acesso
+  	var req: any;
   	return Observable.create(observer => {
   		if (method == "get") {
-  			var req = this.http.get(host, requestOptions);
+  			req = this.http.get(host, requestOptions);
   		} else {
-  			var req = this.http.post(host, parametros, requestOptions);
+  			req = this.http.post(host, parametros, requestOptions);
   		}
 		
 		// Requisição padrão

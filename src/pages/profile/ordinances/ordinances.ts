@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
+
 
 @Component({
   selector: 'ordinances',
@@ -6,12 +8,17 @@ import { Component } from '@angular/core';
 })
 export class OrdinancesPage {
   ordinancesList;
+  private usuario: User;
 
-  constructor() {
+  constructor(private auth: AuthServiceProvider) {
+    this.usuario = this.auth.getUserInfo();
     this.initializeItems();
   }
 
   initializeItems() {
+    // Busca as portarias do usuário
+    var portarias = this.usuario.dados;
+
     this.ordinancesList = [{
       descricao: 'Item 1 - The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.',
       dataInclusao: 1060041600000
