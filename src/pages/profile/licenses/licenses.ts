@@ -18,7 +18,7 @@ export class LicensesPage {
   }
 
   initializeItems() {
-    //this.licensesList = this.usuarios.grupos[1].
+    this.licensesList = this.usuario.licencas;
   }
 
   reportErrorModal() {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
 import { ModalController } from 'ionic-angular';
 import { ReportError } from '../../modals/report';
 
@@ -8,29 +9,16 @@ import { ReportError } from '../../modals/report';
   entryComponents: [ ReportError ]
 })
 export class StockingPage {
+  private usuario: User;
   stockingList;
 
-  constructor(public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController, private auth: AuthServiceProvider) {
+    this.usuario = this.auth.currentUser;
     this.initializeItems();
   }
 
-  initializeItems() {
-    this.stockingList = [{
-      descricao: 'Item 1 - O CARGO GTR-5 FOI EXTINTO PELA LEI DELEGADA N° 44, DE 08/04/2011, PUBLICADA NO DOE DE 09/04/2011. CONFORME Decreto n° 11.824, de 15/04/2011, O Governador do Estado de Alagoas, no uso das atribuições que lhe confere o inciso XIV do art. 107 da Constituição Estadual, RESOLVE nomear Margarida Maria Ferreira Fontan, portadora do CPF n° 208.173.474-53',
-      dataInclusao: 1060041600000
-    },
-    {
-      descricao: 'Item 2 - O CARGO GTR-5 FOI EXTINTO PELA LEI DELEGADA N° 44, DE 08/04/2011, PUBLICADA NO DOE DE 09/04/2011. CONFORME Decreto n° 11.824, de 15/04/2011, O Governador do Estado de Alagoas, no uso das atribuições que lhe confere o inciso XIV do art. 107 da Constituição Estadual, RESOLVE nomear Margarida Maria Ferreira Fontan, portadora do CPF n° 208.173.474-53',
-      dataInclusao: 1060041600000
-    },
-    {
-      descricao: 'Item 3 - O CARGO GTR-5 FOI EXTINTO PELA LEI DELEGADA N° 44, DE 08/04/2011, PUBLICADA NO DOE DE 09/04/2011. CONFORME Decreto n° 11.824, de 15/04/2011, O Governador do Estado de Alagoas, no uso das atribuições que lhe confere o inciso XIV do art. 107 da Constituição Estadual, RESOLVE nomear Margarida Maria Ferreira Fontan, portadora do CPF n° 208.173.474-53',
-      dataInclusao: 1060041600000
-    },
-    {
-      descricao: 'Item 4 - O CARGO GTR-5 FOI EXTINTO PELA LEI DELEGADA N° 44, DE 08/04/2011, PUBLICADA NO DOE DE 09/04/2011. CONFORME Decreto n° 11.824, de 15/04/2011, O Governador do Estado de Alagoas, no uso das atribuições que lhe confere o inciso XIV do art. 107 da Constituição Estadual, RESOLVE nomear Margarida Maria Ferreira Fontan, portadora do CPF n° 208.173.474-53',
-      dataInclusao: 1060041600000
-    }];
+  initializeItems() {    
+    this.stockingList = this.usuario.portarias["Lotação"] != undefined ? this.usuario.portarias["Lotação"] : [];
   }
 
   reportErrorModal() {

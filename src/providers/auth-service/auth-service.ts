@@ -219,7 +219,6 @@ export class AuthServiceProvider {
   			} else if (grupoAtual.descricao == "Portarias") {
   				// Tratar o tipo portarias
   				var nomeTipo = dadoAtual.tipoDadoFichaFuncional.nomeTipo;
-  				console.log(this.currentUser.portarias[nomeTipo]);
   				if (this.currentUser.portarias[nomeTipo] == undefined) {
   					this.currentUser.portarias[nomeTipo] = Array();
   				}
@@ -228,7 +227,6 @@ export class AuthServiceProvider {
   		}	
   	}
 
-  	console.log(this.currentUser.portarias);
   }   	
 
 }
