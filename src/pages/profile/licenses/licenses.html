@@ -13,15 +13,15 @@
 <ion-content>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 
-  <ion-card *ngFor="let licence of licencesList" #item>
+  <ion-card *ngFor="let license of licensesList" #item>
     <ion-card-header>
-      {{licence.dataInclusao | date: 'dd/MM/yyyy'}}
-      <button ion-button color="danger" small class="btn--state-report">
+      {{license.dataInclusao | date: 'dd/MM/yyyy'}}
+      <button ion-button color="danger" small class="btn--state-report" (click)="reportErrorModal()">
         <ion-icon name="alert"></ion-icon>
       </button>
     </ion-card-header>
     <ion-card-content>
-      {{licence.descricao}}
+      {{license.descricao}}
     </ion-card-content>
   </ion-card>
 

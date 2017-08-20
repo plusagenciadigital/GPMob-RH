@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
+import { ModalController } from 'ionic-angular';
+import { ReportError } from '../../modals/report';
 import { User, AuthServiceProvider } from '../../../providers/auth-service/auth-service';
 
 @Component({
   selector: 'endorsements',
-  templateUrl: 'endorsements.html'
+  templateUrl: 'endorsements.html',
+  entryComponents: [ ReportError ]
 })
 export class EndorsementsPage {
   private usuario: User;
   endorsementsList;
 
-  constructor(private auth: AuthServiceProvider) {
+  constructor(private auth: AuthServiceProvider, public modalCtrl: ModalController) {
     this.usuario = this.auth.getUserInfo();
     this.initializeItems();
   }
@@ -17,6 +20,11 @@ export class EndorsementsPage {
   initializeItems() {
     var averbacoes = this.usuario.dados.grupos[0].dados;
     this.endorsementsList = averbacoes;
+  }
+
+  reportErrorModal() {
+    let reportErrorModal = this.modalCtrl.create(ReportError);
+    reportErrorModal.present();
   }
 
   getItems(ev: any) {

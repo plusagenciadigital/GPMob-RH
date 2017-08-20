@@ -17,6 +17,7 @@ import { StockingPage } from '../pages/profile/stocking/stocking';
 import { LicensesPage } from '../pages/profile/licenses/licenses';
 import { DecreesPage } from '../pages/profile/decrees/decrees';
 import { DailyPage } from '../pages/profile/daily/daily';
+import { ReportError } from '../pages/modals/report';
 import { HomePage } from '../pages/home/home';
 import { LiberacaoPage } from '../pages/liberacao/liberacao';
 
@@ -40,6 +41,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     LicensesPage,
     DecreesPage,
     DailyPage,
+    ReportError,
     HomePage,
     LiberacaoPage
   ],
@@ -64,6 +66,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     LicensesPage,
     DecreesPage,
     DailyPage,
+    ReportError,
     HomePage,
     LiberacaoPage
   ],
