@@ -11,8 +11,8 @@ export class UploadModal {
   public base64File: string;
   public auth;
 
-  constructor(public viewCtrl: ViewController, 
-  	public params: NavParams,     
+  constructor(public viewCtrl: ViewController,
+  	public params: NavParams,
   	public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     private camera: Camera) {
@@ -42,7 +42,7 @@ export class UploadModal {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      this.base64File = imageData;
+      this.base64File = "data:image/jpeg;base64," + imageData;
     }, (err) => {
       // Handle error
     });
@@ -69,5 +69,5 @@ export class UploadModal {
     	// Sucesso: requisição feita, anexo enviado
     	this.request();
     });
-  }  
+  }
 }

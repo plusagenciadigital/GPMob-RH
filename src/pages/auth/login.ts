@@ -19,7 +19,8 @@ export class AuthPage {
   	private alertCtrl: AlertController,
 	  private loadingCtrl: LoadingController,
   	public navParams: NavParams) {
-
+      this.appInitialized();
+      
       // Se já pegou o usuário logado
       if (this.auth.getLocalUser()) {
         this.navCtrl.setRoot(HomePage);

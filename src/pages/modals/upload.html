@@ -13,11 +13,12 @@
 <ion-content>
   <ion-list>
     <ion-item>
+      <ion-label floating>Por gentileza, envie uma foto de um documento comprobatório</ion-label>
       <ion-img [src]="base64File" *ngIf="base64File"></ion-img>
     </ion-item>
   </ion-list>
 
   <div padding>
-    <button ion-button full (click)="sendFile()">Solicitar alterações</button>
+    <button ion-button full color="danger" (click)="request()">Tirar foto</button>
   </div>
 </ion-content>
